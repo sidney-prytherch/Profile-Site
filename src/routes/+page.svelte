@@ -1,16 +1,71 @@
+<script>
+	import name_animation from '$lib/images/name-animation.gif';
+	import name_animation_fallback from '$lib/images/name.png';
+	import profile_picture from '$lib/images/self-portrait.png';
+
+</script>
+
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <section>
-	<h1>
-		This is a header... for now
-	</h1>
+
+	<div class="image-container">
+
+		<div class="animation">
+			<h1>
+				Hi! My name is
+			</h1>
+			<span >
+				<picture>
+					<source srcset={name_animation} type="image/gif" />
+					<img src={name_animation_fallback} alt="Name" />
+				</picture>
+			</span>
+		</div>
+
+		
+
+		<span class="animation picture">
+			<picture>
+				<img src={profile_picture} alt="Name" />
+			</picture>
+		</span>
+
+	</div>
 
 </section>
 
 <style>
+
+	.image-container {
+		display: flex;
+		width: 100%;
+		flex-direction: row;
+		border: 1px black;
+	}
+
+	.animation {
+		flex: 2;
+		margin: 10px;
+		border: 1px black;
+	}
+
+	.picture {
+		flex: 1;
+	}
+
+	.animation img {
+		width: 100%;
+	}
+
+	.picture img {
+		border-radius: 50%;
+		border: 10px #2d709a solid;
+	}
+
 	section {
 		display: flex;
 		flex-direction: column;
