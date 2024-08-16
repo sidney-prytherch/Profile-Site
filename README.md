@@ -1,38 +1,12 @@
-# create-svelte
+# Profile Site
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is the code for my profile website. You can view the website by clicking on [`this link`](https://sidney-prytherch.github.io/Profile-Site/).
 
-## Creating a project
+## About the site
 
-If you're seeing this, you've probably already done this step. Congrats!
+This site was developed entirely by me, built starting with SvelteKit's example project.
+It's built using Svelte with JavaScript/TypeScript.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+All pixel art and their animations were created by me in Aseprite.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Thank you for checking out my profile website!
