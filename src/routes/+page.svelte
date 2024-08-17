@@ -3,6 +3,9 @@
 	import name_animation_fallback from '$lib/images/name.png';
 	import profile_picture from '$lib/images/self-portrait.png';
 
+	import About from './About.svelte';
+	import Skills from './Skills.svelte';
+	import Projects from './Projects.svelte';
 </script>
 
 <svelte:head>
@@ -11,14 +14,10 @@
 </svelte:head>
 
 <section>
-
 	<div class="image-container">
-
 		<div class="animation">
-			<h1>
-				Hi! My name is
-			</h1>
-			<span >
+			<h1>Hi! My name is</h1>
+			<span>
 				<picture>
 					<source srcset={name_animation} type="image/gif" />
 					<img src={name_animation_fallback} alt="Name" />
@@ -26,20 +25,25 @@
 			</span>
 		</div>
 
-		
-
 		<span class="animation picture">
 			<picture>
 				<img src={profile_picture} alt="Name" />
 			</picture>
 		</span>
-
 	</div>
+</section>
 
+<section id="about">
+	<About />
+</section>
+<section id="skills">
+	<Skills />
+</section>
+<section id="projects">
+	<Projects />
 </section>
 
 <style>
-
 	.image-container {
 		display: flex;
 		width: 100%;
@@ -63,7 +67,7 @@
 
 	.picture img {
 		border-radius: 50%;
-		border: 10px #2d709a solid;
+		border: 15px #2d709a solid;
 	}
 
 	section {
