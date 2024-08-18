@@ -1,4 +1,5 @@
 @import '@fontsource/fira-mono';
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Lexend+Deca:wght@100..900&family=Londrina+Solid:wght@100;300;400;900&display=swap');
 
 :root {
 	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
@@ -26,12 +27,15 @@ body {
 
 h1,
 h2,
+li,
 p {
+	font-family: "Jersey 10", sans-serif;
 	font-weight: 400;
 }
 
 p {
 	line-height: 1.5;
+	font-size: 2rem;
 }
 
 a {
@@ -43,8 +47,12 @@ a:hover {
 	text-decoration: underline;
 }
 
-h1 {
+li {
 	font-size: 2rem;
+}
+
+h1 {
+	font-size: 2.6rem;
 	text-align: center;
 }
 
@@ -84,7 +92,7 @@ button:focus:not(:focus-visible) {
 
 @media (min-width: 720px) {
 	h1 {
-		font-size: 2.4rem;
+		font-size: 3rem;
 	}
 }
 
