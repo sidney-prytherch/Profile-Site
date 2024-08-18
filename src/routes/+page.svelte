@@ -13,9 +13,9 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section id="intro">
 	<div class="image-container">
-		<div class="animation">
+		<div class="animation name">
 			<h1>Hi! My name is</h1>
 			<span>
 				<picture>
@@ -44,25 +44,45 @@
 </section>
 
 <style>
+
+	#about {
+		background: lightblue;
+	}
+
+	#skills {
+		background: lightcoral;
+	}
+
+	#projects {
+		background: lightgoldenrodyellow;
+	}
+
+	#intro {
+		background: lightseagreen;
+	}
+
+	section {
+		border: 1px green solid;
+	}
+
 	.image-container {
 		display: flex;
-		width: 100%;
 		flex-direction: row;
-		border: 1px black;
+		border: 1px red solid;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.animation {
-		flex: 2;
-		margin: 10px;
-		border: 1px black;
+		border: 1px blue solid;
+	}
+
+	img, source {
+		max-width: 100%;
 	}
 
 	.picture {
-		flex: 1;
-	}
-
-	.animation img {
-		width: 100%;
+		padding-right: 30px; /* to account for 15px border's height name, to center name with picture */
 	}
 
 	.picture img {
@@ -70,12 +90,32 @@
 		border: 15px #2d709a solid;
 	}
 
+	.name {
+		padding-bottom: 108px; /* to account for h1's height, to center name with picture */
+	}
+
+	.animation img {
+		flex-basis: auto;
+		flex-shrink: 1;
+	}
+	
 	section {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: start;
 		align-items: center;
 		flex: 0.6;
+		min-height: 100vh;
+	}
+
+	@media (max-width: 720px) {
+		.image-container {
+			flex-direction: column;
+		}
+
+		.name {
+			padding-bottom: 0; /* with image below name, name doesn't need space below anymore */
+		}
 	}
 
 	h1 {
