@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import name_animation from '$lib/images/name-animation.gif';
 	import name_animation_fallback from '$lib/images/name.png';
 	import profile_picture from '$lib/images/self-portrait.png';
@@ -6,14 +6,42 @@
 	import About from './About.svelte';
 	import Skills from './Skills.svelte';
 	import Projects from './Projects.svelte';
+	import { elementIsMainInViewport } from './Helpers';
+	import { onMount } from 'svelte';
+	import { currentSectionString } from '$lib/stores/sectionStore';
+
+	let currentSection = "Home";
+	let introSection: HTMLElement;
+	let aboutSection: HTMLElement;
+	let skillsSection: HTMLElement;
+	let projectsSection: HTMLElement;
+
+	onMount(() => {
+		let sections = [introSection, aboutSection, skillsSection, projectsSection];
+		let sectionTitleMap = new Map([
+			[introSection, "Home"],
+			[aboutSection, "About"],
+			[skillsSection, "Skills"],
+			[projectsSection, "Projects"],
+		]);
+		window.addEventListener('scroll', e => {
+			for (let section of sections) {
+				if (elementIsMainInViewport(section)) {
+					currentSection = sectionTitleMap.get(section) || "Home";
+					currentSectionString.set(currentSection);
+					break;
+				}
+			}
+		});
+	});
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>{currentSection} • Sidney Prytherch</title>
+	<meta name="description" content="Sidney's awesome profile website" />
 </svelte:head>
 
-<section id="intro">
+<section id="intro" bind:this={introSection}>
 	<div class="image-container">
 		<div class="animation name">
 			<h1>Hi! My name is</h1>
@@ -33,18 +61,17 @@
 	</div>
 </section>
 
-<section id="about">
+<section id="about" bind:this={aboutSection}>
 	<About />
 </section>
-<section id="skills">
+<section id="skills" bind:this={skillsSection}>
 	<Skills />
 </section>
-<section id="projects">
+<section id="projects" bind:this={projectsSection}>
 	<Projects />
 </section>
 
 <style>
-
 	#about {
 		background: lightblue;
 	}
@@ -77,7 +104,8 @@
 		border: 1px blue solid;
 	}
 
-	img, source {
+	img,
+	source {
 		max-width: 100%;
 	}
 
@@ -98,7 +126,7 @@
 		flex-basis: auto;
 		flex-shrink: 1;
 	}
-	
+
 	section {
 		display: flex;
 		flex-direction: column;

@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
 	import { base } from '$app/paths';
+	import { currentSectionString } from '$lib/stores/sectionStore';
 </script>
 
 <header>
@@ -11,19 +12,19 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li aria-current={$page.url.pathname === `${base}/` ? 'page' : undefined}>
+			<li aria-current={$page.url.pathname === `${base}/` && $currentSectionString == "Home" ? 'page' : undefined}>
 				<a href="{base}/">Home</a>
 			</li>
 			<li aria-current={$page.url.pathname === `${base}/contact` ? 'page' : undefined}>
 				<a href="{base}/contact">Contact</a>
 			</li>
-			<li>
+			<li aria-current={$page.url.pathname === `${base}/` && $currentSectionString === "About" ? 'page' : undefined}>
 				<a href="{base}/#about">About</a>
 			</li>
-			<li>
+			<li aria-current={$page.url.pathname === `${base}/` && $currentSectionString === "Skills" ? 'page' : undefined}>
 				<a href="{base}/#skills">Skills</a>
 			</li>
-			<li>
+			<li aria-current={$page.url.pathname === `${base}/` && $currentSectionString === "Projects" ? 'page' : undefined}>
 				<a href="{base}/#projects">Projects</a>
 			</li>
 		</ul>
@@ -43,6 +44,8 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+		position: sticky;
+		top: 0;
 	}
 
 	.corner {
