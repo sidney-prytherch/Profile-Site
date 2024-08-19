@@ -6,11 +6,12 @@
 </script>
 
 <header>
+
+	<!-- to keep the nav bar centered: -->
+	<div class="corner"/>
 	
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
+		<svg width="32" height="48" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M0 0h4v4H0zM4 0h4v4H4zM8 0h4v4H8zM12 0h4v4h-4zM16 0h4v4h-4zM20 0h4v4h-4zM24 0h4v4h-4zM28 0h4v4h-4zM0 4h4v4H0zM4 4h4v4H4zM8 4h4v4H8zM12 4h4v4h-4zM16 4h4v4h-4zM20 4h4v4h-4zM24 4h4v4h-4zM28 4h4v4h-4zM0 8h4v4H0zM4 8h4v4H4zM8 8h4v4H8zM12 8h4v4h-4zM16 8h4v4h-4zM20 8h4v4h-4zM24 8h4v4h-4zM28 8h4v4h-4zM4 12h4v4H4zM8 12h4v4H8zM12 12h4v4h-4zM16 12h4v4h-4zM20 12h4v4h-4zM24 12h4v4h-4zM28 12h4v4h-4zM4 16h4v4H4zM8 16h4v4H8zM12 16h4v4h-4zM16 16h4v4h-4zM20 16h4v4h-4zM24 16h4v4h-4zM28 16h4v4h-4zM4 20h4v4H4zM8 20h4v4H8zM12 20h4v4h-4zM16 20h4v4h-4zM20 20h4v4h-4zM24 20h4v4h-4zM28 20h4v4h-4zM8 24h4v4H8zM12 24h4v4h-4zM16 24h4v4h-4zM20 24h4v4h-4zM24 24h4v4h-4zM28 24h4v4h-4zM8 28h4v4H8zM12 28h4v4h-4zM16 28h4v4h-4zM20 28h4v4h-4zM24 28h4v4h-4zM28 28h4v4h-4zM12 32h4v4h-4zM16 32h4v4h-4zM20 32h4v4h-4zM24 32h4v4h-4zM28 32h4v4h-4zM12 36h4v4h-4zM16 36h4v4h-4zM20 36h4v4h-4zM24 36h4v4h-4zM28 36h4v4h-4zM20 40h4v4h-4zM24 40h4v4h-4zM28 40h4v4h-4zM28 44h4v4h-4z"/></svg>
 		<ul>
 			<li aria-current={$page.url.pathname === `${base}/` && $currentSectionString == "Home" ? 'page' : undefined}>
 				<a href="{base}/">Home</a>
@@ -28,9 +29,8 @@
 				<a href="{base}/#projects">Projects</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
+		<svg width="32" height="48" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="M0 0h4v4H0zM4 0h4v4H4zM8 0h4v4H8zM12 0h4v4h-4zM16 0h4v4h-4zM20 0h4v4h-4zM24 0h4v4h-4zM28 0h4v4h-4zM0 4h4v4H0zM4 4h4v4H4zM8 4h4v4H8zM12 4h4v4h-4zM16 4h4v4h-4zM20 4h4v4h-4zM24 4h4v4h-4zM28 4h4v4h-4zM0 8h4v4H0zM4 8h4v4H4zM8 8h4v4H8zM12 8h4v4h-4zM16 8h4v4h-4zM20 8h4v4h-4zM24 8h4v4h-4zM28 8h4v4h-4zM0 12h4v4H0zM4 12h4v4H4zM8 12h4v4H8zM12 12h4v4h-4zM16 12h4v4h-4zM20 12h4v4h-4zM24 12h4v4h-4zM0 16h4v4H0zM4 16h4v4H4zM8 16h4v4H8zM12 16h4v4h-4zM16 16h4v4h-4zM20 16h4v4h-4zM24 16h4v4h-4zM0 20h4v4H0zM4 20h4v4H4zM8 20h4v4H8zM12 20h4v4h-4zM16 20h4v4h-4zM20 20h4v4h-4zM24 20h4v4h-4zM0 24h4v4H0zM4 24h4v4H4zM8 24h4v4H8zM12 24h4v4h-4zM16 24h4v4h-4zM20 24h4v4h-4zM0 28h4v4H0zM4 28h4v4H4zM8 28h4v4H8zM12 28h4v4h-4zM16 28h4v4h-4zM20 28h4v4h-4zM0 32h4v4H0zM4 32h4v4H4zM8 32h4v4H8zM12 32h4v4h-4zM16 32h4v4h-4zM0 36h4v4H0zM4 36h4v4H4zM8 36h4v4H8zM12 36h4v4h-4zM16 36h4v4h-4zM0 40h4v4H0zM4 40h4v4H4zM8 40h4v4H8zM0 44h4v4H0z"/></svg>
+		
 	</nav>
 
 	<div class="corner">
@@ -62,8 +62,8 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 2.5em;
+		height: 2.5em;
 		object-fit: contain;
 	}
 
