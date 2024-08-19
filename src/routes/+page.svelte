@@ -90,6 +90,7 @@
 
 	section {
 		border: 1px green solid;
+		padding-top: 50px;
 	}
 
 	.image-container {
@@ -104,13 +105,17 @@
 		border: 1px blue solid;
 	}
 
-	img,
-	source {
+	img, source {
 		max-width: 100%;
 	}
 
+	.picture img {
+		min-height: 100%;
+		width: max-content;
+	}
+
 	.picture {
-		padding-right: 30px; /* to account for 15px border's height name, to center name with picture */
+		padding-right: 40px; /* to account for 15px border's height name, to center name with picture, plus space to side of name animation */
 	}
 
 	.picture img {
@@ -120,11 +125,6 @@
 
 	.name {
 		padding-bottom: 108px; /* to account for h1's height, to center name with picture */
-	}
-
-	.animation img {
-		flex-basis: auto;
-		flex-shrink: 1;
 	}
 
 	section {
@@ -143,6 +143,16 @@
 
 		.name {
 			padding-bottom: 0; /* with image below name, name doesn't need space below anymore */
+		}
+
+		.picture {
+			padding: 0 10px; /* to match space to right (30+10) */
+		}
+	}
+
+	@media (max-width: 615px) {
+		.picture {
+			padding-right: 40px; /* to match space to right (30+10) */
 		}
 	}
 
