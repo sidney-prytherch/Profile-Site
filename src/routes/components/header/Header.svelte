@@ -8,15 +8,9 @@
 	import { onMount } from 'svelte';
 
 	const pageList = ['Home', 'Contact', 'About', 'Skills', 'Projects'];
-	const hrefList = [
-		`/`,
-		`/contact`,
-		`/#about`,
-		`/#skills`,
-		`/#projects`
-	];
+	const hrefList = ['/', '/contact', '/#about', '/#skills', '/#projects'];
 	$: currentPage =
-		$page.url.pathname === `/contact`
+		$page.url.pathname === '/contact'
 			? 'Contact'
 			: $currentSectionString === 'About'
 				? 'About'
