@@ -11,9 +11,9 @@
 	const hrefList = [
 		`/`,
 		`/contact`,
-		`#about`,
-		`#skills`,
-		`#projects`
+		`/#about`,
+		`/#skills`,
+		`/#projects`
 	];
 	$: currentPage =
 		$page.url.pathname === `/contact`
