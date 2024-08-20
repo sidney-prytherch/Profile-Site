@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import github from '$lib/images/github.svg';
 	import menuIcon from '$lib/images/menu.svg';
-	import { base } from '$app/paths';
 	import { currentSectionString } from '$lib/stores/sectionStore';
 	import TopNavComponent from './TopNavComponent.svelte';
 	import SideNavComponent from './SideNavComponent.svelte';
@@ -10,14 +9,14 @@
 
 	const pageList = ['Home', 'Contact', 'About', 'Skills', 'Projects'];
 	const hrefList = [
-		`${base}/`,
-		`${base}/contact`,
-		`${base}/#about`,
-		`${base}/#skills`,
-		`${base}/#projects`
+		`/`,
+		`/contact`,
+		`#about`,
+		`#skills`,
+		`#projects`
 	];
 	$: currentPage =
-		$page.url.pathname === `${base}/contact`
+		$page.url.pathname === `/contact`
 			? 'Contact'
 			: $currentSectionString === 'About'
 				? 'About'
