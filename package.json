@@ -3,7 +3,8 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
-		"deploy": "npm run build && npm run gh-pages -d build -t true",
+		"clean": "npm run build && gh-pages-clean gh-pages -d build -t true",
+		"deploy": "npm run build && gh-pages -d build",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
