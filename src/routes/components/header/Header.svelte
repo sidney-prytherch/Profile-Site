@@ -6,11 +6,12 @@
 	import TopNavComponent from './TopNavComponent.svelte';
 	import SideNavComponent from './SideNavComponent.svelte';
 	import { onMount } from 'svelte';
+    import { base } from '$app/paths';
 
 	const pageList = ['Home', 'Contact', 'About', 'Skills', 'Projects'];
-	const hrefList = ['/', '/contact', '/#about', '/#skills', '/#projects'];
+	const hrefList = [`${base}/`, `${base}/contact`, `${base}/#about`, `${base}/#skills`, `${base}/#projects`];
 	$: currentPage =
-		$page.url.pathname === '/contact'
+		$page.url.pathname === `${base}/contact`
 			? 'Contact'
 			: $currentSectionString === 'About'
 				? 'About'
