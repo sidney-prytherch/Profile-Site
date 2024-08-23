@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Kirby",
+        "tags": ["JAVASCRIPT", "CSS", "HTML", "WEB"],
+        "descriptionShort": "Simple single page application for selecting colors",
+        "description": "This project lets you select Kirby Colors using multiple methods of blah blah blah. It's used for lots of blah blah blah",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "link": "https://sidney-prytherch.github.io/KirbyColorSelector/"
+    },
+    {
+        "title": "YAML Editor",
+        "tags": ["SVELTE", "WEB"],
+        "descriptionShort": "Single page for creating YAML Files for an application called Archipelago",
+        "description": "This project lets you create complex yaml files based on a number of settings. Update your settings and blah blah blah.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/"
+    }
+]
