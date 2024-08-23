@@ -1,53 +1,51 @@
 <script lang="ts">
 	import projects from '$lib/data/projects.json';
-	import { ProjectTags } from './types';
+	import { TAG_CODE_TO_NAME_MAP, ProjectTagCodes } from './types';
 
-	// necessary for getting enum key from enum value within Svelte html section
-	const tagMap = new Map(Object.entries(ProjectTags));
+	let currentFilter = ProjectTagCodes.ALLPROJECTS;
 
-	// each tag can be filtered - this map stores each tag and a bool of whether it's filtered or not
-	let tagFilterBooleanMap = new Map(Object.keys(ProjectTags).map((tag) => [tag, false]));
 	// array of strings/tags whose filter is active
-	$: filteredTags = [...tagFilterBooleanMap.keys()].filter((tag) => tagFilterBooleanMap.get(tag));
 	$: filteredProjects =
-		filteredTags.length === 0 || filteredTags.length === tagFilterBooleanMap.size
+		currentFilter === ProjectTagCodes.ALLPROJECTS
 			? projects
-			: projects.filter((project) =>
-					project.tags.some((projectTag) => filteredTags.includes(projectTag))
-				);
+			: projects.filter((project) => project.tags.includes(currentFilter));
+
+	function setFilter(tagCode: string) {
+		currentFilter =
+			currentFilter === tagCode
+				? ProjectTagCodes.ALLPROJECTS
+				: ProjectTagCodes[tagCode as keyof typeof ProjectTagCodes];
+	}
 </script>
 
 <div id="project-section">
 	<h1>Projects</h1>
 
 	<div class="tags">
-		{#each tagFilterBooleanMap.entries() as [tag, isFiltered]}
+		{#each TAG_CODE_TO_NAME_MAP.entries() as [tagCode, tagName]}
 			<button
-				class:selected={isFiltered}
+				class:selected={currentFilter === tagCode}
 				on:click={() => {
-					tagFilterBooleanMap.set(tag, !isFiltered);
-					tagFilterBooleanMap = tagFilterBooleanMap;
-				}}>{tagMap.get(tag)}</button
+					setFilter(tagCode);
+				}}>{tagName}</button
 			>
 		{/each}
-		<button
+		<!-- <button
 			class="clear"
 			on:click={() => {
-				[...tagFilterBooleanMap.keys()].forEach((key) => {
-					tagFilterBooleanMap.set(key, false);
-				});
+				clearFilter();
 				tagFilterBooleanMap = tagFilterBooleanMap;
 			}}
 			>clear filter
-		</button>
+		</button> -->
 	</div>
 
 	{#each filteredProjects as project}
 		<div class="project-group">
-            <h2>{project.title}</h2>
+			<h2>{project.title}</h2>
 			<div class="title-and-tags">
 				{#each project.tags as tag}
-					<span>{tagMap.get(tag)}</span>
+					<span>{tag ? TAG_CODE_TO_NAME_MAP.get(tag) : '-'}</span>
 				{/each}
 			</div>
 			<p>{project.description}</p>
@@ -56,9 +54,10 @@
 </div>
 
 <style>
-    h2, p {
-        margin-block: 0
-    }
+	h2,
+	p {
+		margin-block: 0;
+	}
 
 	h2 {
 		max-width: fit-content;
@@ -69,11 +68,11 @@
 		margin: 0 30px;
 	}
 
-    .title-and-tags {
+	.title-and-tags {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-    }
+	}
 
 	.tags {
 		display: flex;
@@ -118,12 +117,12 @@
 		align-items: stretch;
 		flex-direction: column;
 		background-color: #00000022;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 10px
+		border-radius: 10px;
+		padding: 10px;
+		margin: 10px;
 	}
 
 	.project-group h2 {
-        text-decoration: underline;
+		text-decoration: underline;
 	}
 </style>
