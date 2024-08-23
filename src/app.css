@@ -28,6 +28,8 @@ body {
 h1,
 h2,
 li,
+button,
+span,
 p {
 	font-family: "Jersey 10", sans-serif;
 	font-weight: 400;
@@ -57,7 +59,7 @@ h1 {
 }
 
 h2 {
-	font-size: 1rem;
+	font-size: 2rem;
 }
 
 pre {
@@ -80,8 +82,11 @@ pre {
 	margin: 0 auto;
 }
 
-input,
 button {
+	font-size: 1.2rem
+}
+
+input {
 	font-size: inherit;
 	font-family: inherit;
 }
