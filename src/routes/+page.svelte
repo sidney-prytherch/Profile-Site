@@ -74,35 +74,55 @@
 <style>
 	#about {
 		background: lightblue;
+		border-image-slice: 10 10 10 10 fill;
+		border-image-width: 50px 50px 50px 50px;
+		border-image-outset: 0px 0px 0px 0px; 
+		border-image-repeat: round round; 
+		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
 	}
 
 	#skills {
 		background: lightcoral;
+		border-image-slice: 10 10 10 10 fill;
+		border-image-width: 50px 50px 50px 50px;
+		border-image-outset: 0px 0px 0px 0px; 
+		border-image-repeat: round round; 
+		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
 	}
 
 	#projects {
 		background: lightgoldenrodyellow;
+		border-image-slice: 10 10 10 10 fill;
+		border-image-width: 50px 50px 50px 50px;
+		border-image-outset: 0px 0px 0px 0px; 
+		border-image-repeat: round round; 
+		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
 	}
 
 	#intro {
 		background: lightseagreen;
+		border-image-slice: 10 10 10 10 fill;
+		border-image-width: 50px 50px 50px 50px;
+		border-image-outset: 0px 0px 0px 0px; 
+		border-image-repeat: round round; 
+		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
 	}
 
 	section {
-		border: 1px green solid;
+		/* border: 1px green solid; */
 		padding-top: 50px;
 	}
 
 	.image-container {
 		display: flex;
 		flex-direction: row;
-		border: 1px red solid;
+		/* border: 1px red solid; */
 		align-items: center;
 		justify-content: center;
 	}
 
 	.animation {
-		border: 1px blue solid;
+		/* border: 1px blue solid; */
 	}
 
 	img, source {
