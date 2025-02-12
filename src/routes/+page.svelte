@@ -43,21 +43,23 @@
 
 <section id="intro" bind:this={introSection}>
 	<div class="image-container">
-		<div class="animation name">
-			<h1>Hi! My name is</h1>
-			<span>
-				<picture>
-					<source srcset={name_animation} type="image/gif" />
-					<img src={name_animation_fallback} alt="Name" />
-				</picture>
-			</span>
-		</div>
-
 		<span class="animation picture">
 			<picture>
 				<img src={profile_picture} alt="Name" />
 			</picture>
 		</span>
+
+		<div class="animation name">
+			<h1>Hello! My name is</h1>
+			<div class="myName">
+				<span>
+					<picture>
+						<source srcset={name_animation} type="image/gif" />
+						<img src={name_animation_fallback} alt="Name" />
+					</picture>
+				</span>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -100,12 +102,27 @@
 	}
 
 	#intro {
-		background: lightseagreen;
-		border-image-slice: 10 10 10 10 fill;
-		border-image-width: 50px 50px 50px 50px;
-		border-image-outset: 0px 0px 0px 0px; 
-		border-image-repeat: round round; 
-		border-image-source: url(/src/lib/images/magicWaistcoatStitch.svg);
+		background-color: #5d6bd6;
+		background: url(/src/lib/images/shirtButton.svg) repeat-y;
+		background-position-x: 30%;
+		background-size: 200px;
+	}
+
+	#intro h1 {
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		background: rgb(183, 57, 22);
+		border-bottom: rgb(186, 181, 180) 35px solid;
+		transform: translate(0px, 1px);
+		margin-bottom: 0px;
+	}
+
+	.myName {
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		background: rgb(186, 181, 180);
+		margin-top: 0px;
+		border-bottom: rgb(183, 57, 22) 30px solid;
 	}
 
 	section {
@@ -145,6 +162,7 @@
 
 	.name {
 		padding-bottom: 108px; /* to account for h1's height, to center name with picture */
+		rotate: 3deg;
 	}
 
 	section {
@@ -168,6 +186,12 @@
 		.picture {
 			padding: 0 10px; /* to match space to right (30+10) */
 		}
+		#intro {
+			background: url(/src/lib/images/shirtButton.svg) repeat-y;
+			background-position-x: center;
+			background-size: 100px;
+			padding-top: 0px;
+	}
 	}
 
 	@media (max-width: 615px) {
