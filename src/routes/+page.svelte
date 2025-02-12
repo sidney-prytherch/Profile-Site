@@ -78,7 +78,7 @@
 		border-image-width: 50px 50px 50px 50px;
 		border-image-outset: 0px 0px 0px 0px; 
 		border-image-repeat: round round; 
-		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
+		border-image-source: url(/src/lib/images/magicWaistcoatStitch.svg);
 	}
 
 	#skills {
@@ -87,7 +87,7 @@
 		border-image-width: 50px 50px 50px 50px;
 		border-image-outset: 0px 0px 0px 0px; 
 		border-image-repeat: round round; 
-		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
+		border-image-source: url(/src/lib/images/magicWaistcoatStitch.svg);
 	}
 
 	#projects {
@@ -96,7 +96,7 @@
 		border-image-width: 50px 50px 50px 50px;
 		border-image-outset: 0px 0px 0px 0px; 
 		border-image-repeat: round round; 
-		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
+		border-image-source: url(/src/lib/images/magicWaistcoatStitch.svg);
 	}
 
 	#intro {
@@ -105,7 +105,7 @@
 		border-image-width: 50px 50px 50px 50px;
 		border-image-outset: 0px 0px 0px 0px; 
 		border-image-repeat: round round; 
-		border-image-source: url(/src/images/magicWaistcoatStitch.svg);
+		border-image-source: url(/src/lib/images/magicWaistcoatStitch.svg);
 	}
 
 	section {
