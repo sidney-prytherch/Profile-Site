@@ -62,6 +62,7 @@
 <svelte:window bind:scrollY={scrollPosition} bind:innerHeight bind:innerWidth />
 
 <svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>{currentSection} • Sidney Prytherch</title>
 	<meta name="description" content="Sidney's awesome profile website" />
 </svelte:head>
