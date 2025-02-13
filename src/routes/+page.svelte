@@ -11,7 +11,7 @@
 	import { onMount } from 'svelte';
 	import { currentSectionString } from '$lib/stores/sectionStore';
 
-	let currentSection = 'Home';
+	let currentSection = $state('Home');
 	let introSection: HTMLElement;
 	let aboutSection: HTMLElement;
 	let skillsSection: HTMLElement;
@@ -34,7 +34,11 @@
 	);
 	let rotateSection2in = $derived(Math.min(0, -180 + rotateSection1));
 	let translateYSection2 = $derived(
-		scrollPosition < startScrollSection1 + 2 * threshold ? translateYSection1 - 2 * innerHeight : 0
+		scrollPosition < startScrollSection1 + 1 * threshold
+			? 0
+			: scrollPosition < startScrollSection1 + 2 * threshold
+				? translateYSection1 - 2 * innerHeight
+				: 0
 	);
 
 	let handTop = $derived(innerHeight / 2);
@@ -96,11 +100,11 @@
 	</div>
 </section>
 
-<svelte:document onclick={
-	() => {
-		console.log({scrollPosition, threshold})
-	}
-}/>
+<svelte:document
+	onclick={() => {
+		console.log({ scrollPosition, threshold });
+	}}
+/>
 
 <div class="blank"></div>
 
@@ -147,11 +151,11 @@
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/paperBackground.svg); */
-		border-image-slice: 1 6 12 13 fill;
-		border-image-width: 60px 0px 60px 60px;
+		border-image-slice: 72 72 72 72 fill;
+		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/linedPaper.svg);
+		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
 	#skills {
@@ -161,11 +165,11 @@
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/paperBackground.svg); */
-		border-image-slice: 1 6 12 13 fill;
-		border-image-width: 60px 0px 60px 60px;
+		border-image-slice: 72 72 72 72 fill;
+		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/linedPaper.svg);
+		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
 	#projects {
@@ -174,11 +178,11 @@
 		border-image-width: 50px 50px 50px 50px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round; */
-		border-image-slice: 1 6 12 13 fill;
-		border-image-width: 60px 0px 60px 60px;
+		border-image-slice: 72 72 72 72 fill;
+		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/linedPaper.svg);
+		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
 	#intro {
@@ -286,7 +290,7 @@
 			padding-top: 0px;
 		}
 		.hand {
-			display:none;
+			display: none;
 		}
 	}
 
