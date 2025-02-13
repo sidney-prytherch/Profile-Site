@@ -17,27 +17,27 @@
 	let skillsSection: HTMLElement;
 	let projectsSection: HTMLElement;
 
-	let scrollY = $state(0);
+	let scrollPosition = $state(0);
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
-	let percentScrolled = $derived((scrollY / innerHeight));
-	let zTranslate = $derived(-(innerWidth) * percentScrolled);
-	let xTranslate = $derived(-(innerWidth) * percentScrolled);
+	const threshold = $derived(innerHeight);
+	// let startScrollSection1 = $derived((section1?.offsetHeight || 1000) - innerHeight);
+	let startScrollSection1 = 0;
+	let translateYSection1 = $derived(
+		scrollPosition < startScrollSection1 ? 0 : scrollPosition - startScrollSection1
+	);
+	let translateZSection1 = $derived(Math.round(innerWidth * -0.6));
+	let rotateSection1 = $derived(
+		scrollPosition < startScrollSection1
+			? 0
+			: Math.round(((scrollPosition - startScrollSection1) / threshold) * 90)
+	);
+	let rotateSection2in = $derived(Math.min(0, -180 + rotateSection1));
+	let translateYSection2 = $derived(
+		scrollPosition < startScrollSection1 + 2 * threshold ? translateYSection1 - 2 * innerHeight : 0
+	);
 
-	let paperAngleDeg = $derived(Math.max(-90, Math.min(0, (-120 + 60 * percentScrolled))))
-	let paperXTranslate = $derived(Math.max(0, Math.min(1000, (1333 - 666 * percentScrolled))))
-	let paperZTranslate = $derived(-1 * Math.max(0, Math.min(1000, (1333 - 666 * percentScrolled))))
-	let paperYTranslate = $derived(scrollY > 2 * innerHeight ? 0 : scrollY - 2 * innerHeight);
-	
-	let handTop = $derived(innerHeight / 2)
-
-
-	// let xTranslate2 = $derived(-(innerWidth) * (percentScrolled < .6 ? ));
-
-	let angle = $derived(Math.PI / 2 * scrollY / (innerHeight * 1.5));
-	let angleDeg = $derived(90 * scrollY / (innerHeight * 1));
-	let scrollCos = $derived(Math.cos(angle))
-	let scrollSin = $derived(Math.sin(angle))
+	let handTop = $derived(innerHeight / 2);
 
 	onMount(() => {
 		let sections = [introSection, aboutSection, skillsSection, projectsSection];
@@ -59,20 +59,22 @@
 	});
 </script>
 
-<svelte:window bind:scrollY bind:innerHeight bind:innerWidth onclick={() => {console.log({paperAngleDeg, 
-	paperXTranslate, 
-	paperZTranslate, percentScrolled, innerHeight, scrollY, innerWidth, angleDeg, xTranslate, zTranslate})}}/>
+<svelte:window bind:scrollY={scrollPosition} bind:innerHeight bind:innerWidth />
 
 <svelte:head>
 	<title>{currentSection} • Sidney Prytherch</title>
 	<meta name="description" content="Sidney's awesome profile website" />
 </svelte:head>
 
-
 <!-- <section id="intro" bind:this={introSection} style="translate: 10px {scrollY}px {innerHeight}px; rotate: y {(90) * (scrollY / innerHeight)}deg;"> -->
 <!-- <section id="intro" bind:this={introSection} style="transform: matrix3d({scrollCos},0,{scrollSin},0,0.00,1,0.00,0,-{scrollSin},0,{scrollCos},0,0,{scrollY},-{scrollY},1)"> -->
 <!-- <section id="intro" bind:this={introSection} style="transform: perspective(1000px) rotate3d(0, 1, 0, {3 * angleDeg}deg) translate3d(0px, {scrollY}px, -{2 * scrollY}px);"> -->
-<section id="intro" bind:this={introSection} class:invisible={percentScrolled > .7} style="transform: perspective({innerWidth}px) rotate3d(0, 1, 0, {angleDeg}deg) translate3d({xTranslate}px, {scrollY}px, {zTranslate}px);">
+<section
+	id="intro"
+	bind:this={introSection}
+	class:invisible={scrollPosition > startScrollSection1 + threshold}
+	style="transform: rotate3d(0, 1, 0, {rotateSection1}deg) translate3d({0}px, {translateYSection1}px, {translateZSection1}px);"
+>
 	<div class="image-container">
 		<span class="animation picture fancy-animation">
 			<picture>
@@ -94,14 +96,21 @@
 	</div>
 </section>
 
-<svelte:document on:scroll={() => {}} />
+<svelte:document onclick={
+	() => {
+		console.log({scrollPosition, threshold})
+	}
+}/>
 
 <div class="blank"></div>
 
 <!-- style="transform: perspective({innerHeight * 2}px) rotate3d(0, 1, 0, {3 * angleDeg}deg) translate3d(0px, {scrollY}px, -{3 * scrollY}px);" -->
 <!-- <section id="about" bind:this={aboutSection} style="{percentScrolled < 2 ? `transform: perspective(${innerWidth}px) rotate3d(0, 1, 0, ${paperAngleDeg}deg) translate3d(${paperXTranslate}px, ${scrollY - 2 * innerHeight}px, ${paperZTranslate}px)` : ''}" -->
-<section id="about" bind:this={aboutSection} style="transform: perspective({innerWidth}px) rotate3d(0, 1, 0, {paperAngleDeg}deg) translate3d({paperXTranslate}px, {paperYTranslate}px, {paperZTranslate}px);"
-
+<section
+	id="about"
+	bind:this={aboutSection}
+	class:invisible={scrollPosition < threshold}
+	style="transform: rotate3d(0, 1, 0, {rotateSection2in}deg) translate3d({0}px, {translateYSection2}px, {translateZSection1}px);"
 >
 	<About />
 	<div class="hand" style="top: {handTop}px">
@@ -120,12 +129,10 @@
 </section>
 
 <style>
-
 	.hand {
 		position: absolute;
 		right: 0;
 		transform: translateX(432px);
-
 	}
 
 	.blank {
@@ -143,7 +150,7 @@
 		border-image-slice: 1 6 12 13 fill;
 		border-image-width: 60px 0px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round; 
+		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/linedPaper.svg);
 	}
 
@@ -157,7 +164,7 @@
 		border-image-slice: 1 6 12 13 fill;
 		border-image-width: 60px 0px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round; 
+		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/linedPaper.svg);
 	}
 
@@ -170,7 +177,7 @@
 		border-image-slice: 1 6 12 13 fill;
 		border-image-width: 60px 0px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round; 
+		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/linedPaper.svg);
 	}
 
