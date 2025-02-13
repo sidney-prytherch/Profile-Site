@@ -286,6 +286,9 @@
 			background-size: 100px;
 			padding-top: 0px;
 		}
+		.hand {
+			display:none;
+		}
 	}
 
 	@media (max-width: 615px) {
