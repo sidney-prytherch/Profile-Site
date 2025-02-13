@@ -17,6 +17,7 @@
 	let skillsSection: HTMLElement;
 	let projectsSection: HTMLElement;
 
+	let scrollAnimationIsActive = $state(false);
 	let scrollPosition = $state(0);
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
@@ -67,6 +68,28 @@
 	bind:scrollY={scrollPosition}
 	bind:innerHeight
 	bind:innerWidth
+	onscroll={() => {
+		if (!scrollAnimationIsActive){
+		if (scrollPosition > innerHeight * .3 && scrollPosition < innerHeight * 1) {
+			scrollAnimationIsActive = true;
+			setTimeout(() => {
+				scrollAnimationIsActive = false
+			}, 1000)
+			window.scrollTo({
+				top: 2 * innerHeight,
+				behavior: 'smooth'
+			});
+		} else if (scrollPosition > innerHeight * 1 && scrollPosition < innerHeight * 1.7) {
+			scrollAnimationIsActive = true;
+			setTimeout(() => {
+				scrollAnimationIsActive = false
+			}, 1000)
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}}
+	}}
 	on:hashchange={() => {
 		const hash = window.location.hash;
 
@@ -76,22 +99,6 @@
 				behavior: 'smooth'
 			});
 		}
-		// if (hash === '#skills') {
-		// 	window.scrollTo({
-		// 		top: 2 * innerHeight,
-		// 		behavior: 'smooth'
-		// 	});
-		// 	window.scrollTo({
-		// 		top: 3.1 * innerHeight,
-		// 		behavior: 'smooth'
-		// 	});
-		// }
-		// if (hash === '#projects') {
-		// 	window.scrollTo({
-		// 		top: projectsSection.clientTop,
-		// 		behavior: 'smooth'
-		// 	});
-		// }
 	}}
 />
 
@@ -166,36 +173,21 @@
 	.hand {
 		position: absolute;
 		right: 0;
+		/* where the edge of the paper should be in the image for the illusion of behind the hand: */
 		transform: translateX(432px);
 	}
 
 	.blank {
 		height: 200vh;
-		min-height: 1000px;
+		min-height: 200vh;
 	}
 
-	#about {
+	#projects, #skills, #about {
 		border-image-slice: 72 72 72 72 fill;
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
 		z-index: -1;
-		border-image-source: url(/src/lib/images/linedPaper.png);
-	}
-
-	#skills {
-		border-image-slice: 72 72 72 72 fill;
-		border-image-width: 60px 60px 60px 60px;
-		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/linedPaper.png);
-	}
-
-	#projects {
-		border-image-slice: 72 72 72 72 fill;
-		border-image-width: 60px 60px 60px 60px;
-		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round;
 		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
