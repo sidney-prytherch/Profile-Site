@@ -16,6 +16,7 @@
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
 	color: var(--color-text);
+	overflow-x: hidden;
 }
 
 body {

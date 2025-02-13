@@ -1,5 +1,6 @@
 nav {
     display: flex;
+    z-index: 2;
     --background: rgba(255, 255, 255, 0.7);
 }
 
