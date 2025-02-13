@@ -63,7 +63,37 @@
 	});
 </script>
 
-<svelte:window bind:scrollY={scrollPosition} bind:innerHeight bind:innerWidth />
+<svelte:window
+	bind:scrollY={scrollPosition}
+	bind:innerHeight
+	bind:innerWidth
+	on:hashchange={() => {
+		const hash = window.location.hash;
+
+		if (hash === '#about') {
+			window.scrollTo({
+				top: 2 * innerHeight,
+				behavior: 'smooth'
+			});
+		}
+		// if (hash === '#skills') {
+		// 	window.scrollTo({
+		// 		top: 2 * innerHeight,
+		// 		behavior: 'smooth'
+		// 	});
+		// 	window.scrollTo({
+		// 		top: 3.1 * innerHeight,
+		// 		behavior: 'smooth'
+		// 	});
+		// }
+		// if (hash === '#projects') {
+		// 	window.scrollTo({
+		// 		top: projectsSection.clientTop,
+		// 		behavior: 'smooth'
+		// 	});
+		// }
+	}}
+/>
 
 <svelte:head>
 	<title>{currentSection} • Sidney Prytherch</title>
@@ -145,26 +175,15 @@
 	}
 
 	#about {
-		/* background: lightblue;
-		border-image-slice: 10 10 10 10 fill;
-		border-image-width: 50px 50px 50px 50px;
-		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/paperBackground.svg); */
 		border-image-slice: 72 72 72 72 fill;
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
+		z-index: -1;
 		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
 	#skills {
-		/* background: lightcoral;
-		border-image-slice: 10 10 10 10 fill;
-		border-image-width: 50px 50px 50px 50px;
-		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round;
-		border-image-source: url(/src/lib/images/paperBackground.svg); */
 		border-image-slice: 72 72 72 72 fill;
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
@@ -173,11 +192,6 @@
 	}
 
 	#projects {
-		/* background: lightgoldenrodyellow;
-		border-image-slice: 10 10 10 10 fill;
-		border-image-width: 50px 50px 50px 50px;
-		border-image-outset: 0px 0px 0px 0px;
-		border-image-repeat: round round; */
 		border-image-slice: 72 72 72 72 fill;
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
@@ -186,12 +200,9 @@
 	}
 
 	#intro {
-		background-color: #5d6bd6;
 		background: url(/src/lib/images/shirtButton.svg) repeat-y;
 		background-position-x: 30%;
 		background-size: 200px;
-		top: 0;
-		position: absolute;
 		z-index: -1;
 	}
 
