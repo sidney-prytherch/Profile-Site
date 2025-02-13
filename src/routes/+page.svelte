@@ -124,7 +124,7 @@
 	.hand {
 		position: absolute;
 		right: 0;
-		transform: translateX(360px);
+		transform: translateX(432px);
 
 	}
 
