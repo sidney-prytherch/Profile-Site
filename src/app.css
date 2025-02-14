@@ -7,8 +7,9 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
 	--color-bg-0: #5d6bd6;
-	--color-bg-1: #5d6bd6;
+	--color-bg-1: #138684;
 	--color-bg-2: #5d6bd6;
+	/* --color-bg-2: #5d6bd6; */
 	--color-theme-1: #ff3e00;
 	--color-theme-2: #4075a6;
 	--color-text: rgba(0, 0, 0, 1);

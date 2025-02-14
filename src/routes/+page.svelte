@@ -1,7 +1,7 @@
 <script lang="ts">
 	import name_animation from '$lib/images/name-animation.gif';
 	import name_animation_fallback from '$lib/images/name.png';
-	import profile_picture from '$lib/images/self-portrait.png';
+	import profile_picture from '$lib/images/self-portrait-transparentShirt.png';
 	import hand_picture from '$lib/images/hand.png';
 
 	import About from './About.svelte';
@@ -12,10 +12,10 @@
 	import { currentSectionString } from '$lib/stores/sectionStore';
 
 	let currentSection = $state('Home');
-	let introSection: HTMLElement;
-	let aboutSection: HTMLElement;
-	let skillsSection: HTMLElement;
-	let projectsSection: HTMLElement;
+	let introSection: HTMLElement | undefined = $state();
+	let aboutSection: HTMLElement | undefined = $state();
+	let skillsSection: HTMLElement | undefined = $state();
+	let projectsSection: HTMLElement | undefined = $state();
 
 	let scrollAnimationIsActive = $state(false);
 	let scrollPosition = $state(0);
@@ -24,11 +24,11 @@
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
 	const threshold = $derived(innerHeight);
-	// let startScrollSection1 = $derived((section1?.offsetHeight || 1000) - innerHeight);
 
 	let aboutSectionTop = $state(2000);
-	let projectsSectionTop = $state(2000);
 	let skillsSectionTop = $state(2000);
+	let projectsSectionTop = $state(2000);
+
 	let transitionPeriod = $derived(Math.round(innerHeight / 2));
 	let translateZ = $derived(Math.round(innerWidth * -0.55));
 
@@ -75,6 +75,9 @@
 
 	const debugPrint = () => {
 		console.log({
+			aboutSectionTop,
+			skillsSectionTop,
+			projectsSectionTop,
 			scrollPosition,
 			aboutToSkillsScrollThreshold,
 			aboutRotateAngleOut,
@@ -84,38 +87,27 @@
 
 	let handTop = $derived(innerHeight / 2);
 
-	let sections: HTMLElement[] = $state([]);
+	let sections: (HTMLElement | undefined)[] = $derived([
+		introSection,
+		aboutSection,
+		skillsSection,
+		projectsSection
+	]);
 
 	let sectionTitleMap: Map<HTMLElement, string> = $state(new Map());
 
 	onMount(() => {
-		sections = [introSection, aboutSection, skillsSection, projectsSection];
-		sectionTitleMap = new Map([
-			[projectsSection, 'Projects'],
-			[skillsSection, 'Skills'],
-			[aboutSection, 'About'],
-			[introSection, 'Home']
-		]);
-		if (skillsSection) {
-			skillsSectionTop = skillsSection.offsetTop;
-		}
-		if (projectsSection) {
-			projectsSectionTop = projectsSection.offsetTop;
-		}
-		if (aboutSection) {
+		if (projectsSection && skillsSection && aboutSection && introSection) {
 			aboutSectionTop = aboutSection.offsetTop;
+			skillsSectionTop = skillsSection.offsetTop;
+			projectsSectionTop = projectsSection.offsetTop;
+			sectionTitleMap = new Map([
+				[projectsSection, 'Projects'],
+				[skillsSection, 'Skills'],
+				[aboutSection, 'About'],
+				[introSection, 'Home']
+			]);
 		}
-		// window.addEventListener('scroll', (e) => {
-		// 	for (let section of sections) {
-		// 		// if (elementIsMainInViewport(section)) {
-		// 		if (scrollPosition > section.offsetTop - 100) {
-		// 			currentSection = sectionTitleMap.get(section) || 'Home';
-		// 			console.log(currentSection)
-		// 			currentSectionString.set(currentSection);
-		// 			break;
-		// 		}
-		// 	}
-		// });
 	});
 </script>
 
@@ -123,6 +115,13 @@
 	bind:scrollY={scrollPosition}
 	bind:innerHeight
 	bind:innerWidth
+	onresize={() => {
+		if (projectsSection && skillsSection && aboutSection) {
+			aboutSectionTop = aboutSection.offsetTop;
+			skillsSectionTop = skillsSection.offsetTop;
+			projectsSectionTop = projectsSection.offsetTop;
+		}
+	}}
 	onclick={debugPrint}
 	onscroll={() => {
 		if (!scrollAnimationIsActive) {
@@ -145,9 +144,7 @@
 			}
 		}
 		for (let section of sections) {
-			console.log(currentSection);
-			// if (elementIsMainInViewport(section)) {
-			if (scrollPosition > section.offsetTop - 100) {
+			if (section && scrollPosition > section.offsetTop - 100) {
 				currentSection = sectionTitleMap.get(section) || 'Home';
 				console.log(currentSection);
 				currentSectionString.set(currentSection);
@@ -299,15 +296,15 @@
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
-		z-index: -1;
+		z-index: 0;
 		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
 	#intro {
-		background: url(/src/lib/images/shirtButton.svg) repeat-y;
-		background-position-x: 30%;
+		background: url(/src/lib/images/shirtButtonTransparent.svg) repeat-y;
+		background-position-x: 25%;
 		background-size: 200px;
-		z-index: -1;
+		z-index: 0;
 		min-height: 200vh;
 	}
 
@@ -323,7 +320,7 @@
 	#intro h1 {
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-		background: rgb(183, 57, 22);
+		background: #f55b4c;
 		border-bottom: rgb(186, 181, 180) 35px solid;
 		transform: translate(0px, 1px);
 		margin-bottom: 0px;
@@ -334,7 +331,7 @@
 		border-bottom-right-radius: 20px;
 		background: rgb(186, 181, 180);
 		margin-top: 0px;
-		border-bottom: rgb(183, 57, 22) 30px solid;
+		border-bottom: #f55b4c 30px solid;
 	}
 
 	section {
@@ -405,12 +402,13 @@
 			padding: 0 10px; /* to match space to right (30+10) */
 		}
 		#intro {
-			background: url(/src/lib/images/shirtButton.svg) repeat-y;
+			background: url(/src/lib/images/shirtButtonTransparent.svg) repeat-y;
 			background-position-x: center;
 			background-size: 100px;
 			padding-top: 0px;
 		}
-		.hand, .lefthand {
+		.hand,
+		.lefthand {
 			display: none;
 		}
 	}

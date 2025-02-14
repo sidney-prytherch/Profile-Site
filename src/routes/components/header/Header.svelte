@@ -72,6 +72,10 @@
 		height: 3em;
 	}
 
+	.corner, .top-nav {
+		z-index: 2;
+	}
+
 	.corner a,
 	.left img {
 		display: flex;
