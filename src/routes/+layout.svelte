@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>This is the footer - for now</p>
+		<!-- <p>This site was developed with Svelte, JavaScript, etc</p> -->
 	</footer>
 </div>
 

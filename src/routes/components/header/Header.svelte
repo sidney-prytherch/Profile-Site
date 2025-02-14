@@ -8,12 +8,15 @@
 	import { onMount } from 'svelte';
     import { base } from '$app/paths';
 
-	const pageList = ['Home', 'Contact', 'About', 'Skills', 'Projects'];
-	const hrefList = [`${base}/`, `${base}/contact`, `${base}/#about`, `${base}/#skills`, `${base}/#projects`];
+	// const pageList = ['Home', 'Contact', 'About', 'Skills', 'Projects'];
+	// const hrefList = [`${base}/`, `${base}/contact`, `${base}/#about`, `${base}/#skills`, `${base}/#projects`];
+	const pageList = ['Home', 'About', 'Skills', 'Projects'];
+	const hrefList = [`${base}/`, `${base}/#about`, `${base}/#skills`, `${base}/#projects`];
 	$: currentPage =
 		$page.url.pathname === `${base}/contact`
 			? 'Contact'
-			: $currentSectionString === 'About'
+			: 
+			$currentSectionString === 'About'
 				? 'About'
 				: $currentSectionString === 'Skills'
 					? 'Skills'
