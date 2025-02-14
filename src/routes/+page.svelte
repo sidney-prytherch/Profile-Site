@@ -287,7 +287,7 @@
 		: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut}deg);`}
 >
 	<About />
-	<div class="blank"></div>
+	<!-- <div class="blank"></div> -->
 	<div class="hand" style="top: {handTop}px">
 		<span>
 			<picture>
@@ -299,8 +299,6 @@
 <section
 	id="skills"
 	bind:this={skillsSection}
-	class:invisibleV2={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod ||
-		scrollPosition > skillsToProjectsScrollThreshold}
 	style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
 		? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
 		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
@@ -378,11 +376,6 @@
 		transform: scaleX(-1) translateX(432px);
 	}
 
-	.blank {
-		height: 100vh;
-		min-height: 100vh;
-	}
-
 	#projects,
 	.folder {
 		background-color: burlywood;
@@ -396,6 +389,7 @@
 		border-image-outset: 0px 0px 0px 0px;
 		border-image-repeat: round round;
 		z-index: 0;
+		min-height: 110vh;
 		border-image-source: url(/src/lib/images/linedPaper.png);
 	}
 
