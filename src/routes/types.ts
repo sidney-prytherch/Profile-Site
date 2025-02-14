@@ -1,26 +1,30 @@
 export enum ProjectTagCodes {
     ALLPROJECTS = "ALLPROJECTS",
     WEB = "WEB",
-    ANDROID = "ANDROID",
+    ANDROIDAPP = "ANDROIDAPP",
     DESKTOPAPP = "DESKTOPAPP",
     SVELTE = "SVELTE",
     HTML = "HTML",
     CSS = "CSS",
     JAVASCRIPT = "JAVASCRIPT",
     TYPESCRIPT = "TYPESCRIPT",
-    JAVA = "JAVA"
+    JAVA = "JAVA",
+    KOTLIN = "KOTLIN",
+    SQLITE = "SQLITE"
 }
 
 export const TAG_CODE_TO_NAME_MAP = new Map(
     [
         ["ALLPROJECTS", "All Projects"],
         ["WEB", "Web"],
-        ["ANDROID", "Android"],
+        ["ANDROIDAPP", "Android App"],
         ["DESKTOPAPP", "Desktop App"],
         ["SVELTE", "Svelte"],
         ["HTML", "HTML"],
         ["CSS", "CSS"],
         ["JAVASCRIPT", "JavaScript"],
         ["TYPESCRIPT", "TypeScript"],
-        ["JAVA", "Java"]
+        ["JAVA", "Java"],
+        ["KOTLIN", "Kotlin"],
+        ["SQLITE", "SQLite"],
     ]);

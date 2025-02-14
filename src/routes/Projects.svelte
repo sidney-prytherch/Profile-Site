@@ -33,14 +33,6 @@
 				}}>{tagName}</button
 			>
 		{/each}
-		<!-- <button
-			class="clear"
-			on:click={() => {
-				clearFilter();
-				tagFilterBooleanMap = tagFilterBooleanMap;
-			}}
-			>clear filter
-		</button> -->
 	</div>
 
 	{#each filteredProjects as project}

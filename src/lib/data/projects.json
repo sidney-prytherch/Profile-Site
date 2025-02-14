@@ -1,22 +1,96 @@
-[
+[    
     {
-        "title": "Kirby",
-        "tags": ["JAVASCRIPT", "CSS", "HTML", "WEB"],
-        "descriptionShort": "Simple single page application for selecting colors",
-        "description": "This project lets you select Kirby Colors using multiple methods of blah blah blah. It's used for lots of blah blah blah",
+        "title": "Crochet Pattern Automator v2",
+        "tags": ["SVELTE", "WEB", "HTML", "CSS", "JAVASCRIPT", "TYPESCRIPT"],
+        "descriptionShort": "Website that allows users to create a crochet pattern out of their uploaded image",
+        "description": "Users can upload a photo to this website and change the settings to make a crochet pattern for a \"graphgan\". Colors can be selected manually or automatically, using K-Means clustering algorithm. Users can customize using a wide range of settings, including the number of stitches, rows, size, color values, number of colors, and number of clusters used for the k-means algorithm.",
         "imagePath": [
             "images/self-portrait.png"
         ],
-        "link": "https://sidney-prytherch.github.io/KirbyColorSelector/"
+        "link": "https://sidney-prytherch.github.io/graphgan/",
+        "linkToCode": "https://github.com/sidney-prytherch/graphgan"
+    },
+    {
+        "title": "Crochet Pattern Automator v1",
+        "tags": ["JAVA", "DESKTOPAPP"],
+        "descriptionShort": "A previous iteration of the Crochet Pattern Automator, but made with Java in a desktop application.",
+        "description": "Users can change settings and upload an image for creating a crochet pattern. This app also uses K-Means Clustering algorithm. Along with the pattern instructions, this app also created a simulated image of the final crochet work.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/CrochetPatternCreator"
+    },
+    {
+        "title": "Snake (HTML5 game)",
+        "tags": ["HTML", "CSS", "JAVASCRIPT", "TYPESCRIPT", "WEB"],
+        "descriptionShort": "HTML5 game rendition of the classic game, Snake.",
+        "description": "Users can change number settings, including player count (1 or 2), speed/difficulty, grid size, and snake color. Code was written entirely with HTML, CSS, and TypeScript, which was transpiled automatically to JavaScript for the live page - no other libraries were used except those necessary for TypeScript.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "link": "https://sidney-prytherch.github.io/Snake/",
+        "linkToCode": "https://github.com/sidney-prytherch/snake"
+    },
+    {
+        "title": "Portfolio Website!",
+        "tags": ["SVELTE", "HTML", "CSS", "TYPESCRIPT", "JAVASCRIPT", "WEB"],
+        "descriptionShort": "The website you're looking at now!",
+        "description": "Animations for this website were done myself, with no libraries used outside of those necessary for using Svelte and TypeScript.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/Profile-Site"
     },
     {
         "title": "YAML Editor",
-        "tags": ["SVELTE", "WEB"],
-        "descriptionShort": "Single page for creating YAML Files for an application called Archipelago",
-        "description": "This project lets you create complex yaml files based on a number of settings. Update your settings and blah blah blah.",
+        "tags": ["SVELTE", "WEB", "HTML", "CSS", "JAVASCRIPT"],
+        "descriptionShort": "Single page site for creating YAML settings files for an application called Archipelago",
+        "description": "This website allows users create complex yaml files based on a number of settings. Being heavily based in data, this project takes advantage of Svelte's reactiveness with changes to data updating live.",
         "imagePath": [
             "images/self-portrait.png"
         ],
-        "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/"
+        "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/",
+        "linkToCode": "https://github.com/sidney-prytherch/archipelago-yaml-editor"
+    },
+    {
+        "title": "Kirby Color Selector",
+        "tags": ["JAVASCRIPT", "CSS", "HTML", "WEB"],
+        "descriptionShort": "Single-page web application for selecting a highly-customizable color theme",
+        "description": "This single-page web application helps users create a color theme for a mod for a Kirby game. While users can select colors individually, the page includes a lot of options and settings for creating a synergistic color theme, which updates in realtime on the animation. The user can also download a video of the animation with the colors selected. This website is purely HTML, CSS, and JavaScript - no libraries were used.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "link": "https://sidney-prytherch.github.io/KirbyColorSelector/",
+        "linkToCode": "https://github.com/sidney-prytherch/KirbyColorSelector"
+    },
+    {
+        "title": "Portuguese Verb Practice App",
+        "tags": ["ANDROIDAPP", "KOTLIN", "SQLITE"],
+        "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
+        "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which you can view conjugations and create a specific group of verbs to practice. You can also select verbs from verb endings, conjugation patterns, and irregularities. You can select which verb tenses/moods you want to practice, some of which differ slightly depending on whether you're practicing European Portuguese or Brazilian Portuguese. You can also change the game settings and subject pronouns.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/Portuguese-Verb-Practice-App"
+    },
+    {
+        "title": "Hit or Blow Logic Puzzle App",
+        "tags": ["ANDROIDAPP", "KOTLIN"],
+        "descriptionShort": "A simple logic puzzle with customizable settings, in the form of an Android application. Based on the board game Mastermind which was made in 1970.",
+        "description": "In this logic puzzle game, you have a number of guesses to determine the which 4 colors are part of the code, and in which order. You can change how many colors may appear in the 4-color code, and how many guesses you have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/Color-Code-Game-App"
+    },
+    {
+        "title": "Train Tracks Logic Puzzle App",
+        "tags": ["ANDROIDAPP", "KOTLIN"],
+        "descriptionShort": "An Android app for generating and playing the Train Tracks logic puzzle.",
+        "description": "In this logic puzzle game, you have to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/train-tracks"
     }
 ]

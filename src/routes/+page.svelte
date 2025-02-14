@@ -340,6 +340,10 @@
 	<Projects
 		buttonSort={() => {
 			requestAnimationFrame(step);
+			window.scrollTo({
+				top: projectsSectionTop,
+				behavior: 'smooth'
+			});
 		}}
 	/>
 	<div class="hand" style="top: {handTop}px">
