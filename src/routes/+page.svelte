@@ -30,7 +30,7 @@
 	let projectsSectionTop = $state(2000);
 	let skillsSectionTop = $state(2000);
 	let transitionPeriod = $derived(Math.round(innerHeight / 2));
-	let translateZ = $derived(Math.round(innerWidth * -0.6));
+	let translateZ = $derived(Math.round(innerWidth * -0.55));
 
 	// intro rotates out from 0 to innerHeight aka threshold
 	let introRotateAngle = $derived(Math.min(90, Math.round((scrollPosition / threshold) * 90)));
@@ -410,7 +410,7 @@
 			background-size: 100px;
 			padding-top: 0px;
 		}
-		.hand {
+		.hand, .lefthand {
 			display: none;
 		}
 	}
