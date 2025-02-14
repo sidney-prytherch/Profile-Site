@@ -19,48 +19,103 @@
 
 	let scrollAnimationIsActive = $state(false);
 	let scrollPosition = $state(0);
+	let previousScrollPosition = $state(-1);
+	let isScrollingUp = $derived(previousScrollPosition > scrollPosition);
 	let innerHeight = $state(0);
 	let innerWidth = $state(0);
 	const threshold = $derived(innerHeight);
 	// let startScrollSection1 = $derived((section1?.offsetHeight || 1000) - innerHeight);
-	let startScrollSection1 = 0;
-	let translateYSection1 = $derived(
-		scrollPosition < startScrollSection1 ? 0 : scrollPosition - startScrollSection1
-	);
-	let translateZSection1 = $derived(Math.round(innerWidth * -0.6));
-	let rotateSection1 = $derived(
-		scrollPosition < startScrollSection1
+
+	let aboutSectionTop = $state(2000);
+	let projectsSectionTop = $state(2000);
+	let skillsSectionTop = $state(2000);
+	let transitionPeriod = $derived(Math.round(innerHeight / 2));
+	let translateZ = $derived(Math.round(innerWidth * -0.6));
+
+	// intro rotates out from 0 to innerHeight aka threshold
+	let introRotateAngle = $derived(Math.min(90, Math.round((scrollPosition / threshold) * 90)));
+	// about rotates in from the top of blank canvas
+	let introToAboutScrollThreshold = $derived(aboutSectionTop - threshold);
+	// let aboutRotateAngleIn = $derived(Math.min(0, -90 + introRotateAngle));
+	let aboutRotateAngleIn = $derived(
+		scrollPosition < introToAboutScrollThreshold
 			? 0
-			: Math.round(((scrollPosition - startScrollSection1) / threshold) * 90)
+			: Math.min(
+					0,
+					Math.max(
+						-90,
+						Math.round(((scrollPosition - introToAboutScrollThreshold) / threshold) * 90) - 90
+					)
+				)
 	);
-	let rotateSection2in = $derived(Math.min(0, -180 + rotateSection1));
-	let translateYSection2 = $derived(
-		scrollPosition < startScrollSection1 + 1 * threshold
+
+	let aboutToSkillsScrollThreshold = $derived(skillsSectionTop - transitionPeriod);
+
+	let aboutRotateAngleOut = $derived(
+		scrollPosition < aboutToSkillsScrollThreshold
 			? 0
-			: scrollPosition < startScrollSection1 + 2 * threshold
-				? translateYSection1 - 2 * innerHeight
-				: 0
+			: Math.max(
+					-90,
+					Math.round(((scrollPosition - aboutToSkillsScrollThreshold) / transitionPeriod) * -90)
+				)
 	);
+	let skillsRotateAngleIn = $derived(Math.max(0, 90 + aboutRotateAngleOut));
+
+	let skillsToProjectsScrollThreshold = $derived(projectsSectionTop - transitionPeriod);
+
+	let skillsRotateAngleOut = $derived(
+		scrollPosition < skillsToProjectsScrollThreshold
+			? 0
+			: Math.min(
+					90,
+					Math.round(((scrollPosition - skillsToProjectsScrollThreshold) / transitionPeriod) * 90)
+				)
+	);
+	let projectsRotateAngleIn = $derived(Math.min(0, -90 + skillsRotateAngleOut));
+
+	const debugPrint = () => {
+		console.log({
+			scrollPosition,
+			aboutToSkillsScrollThreshold,
+			aboutRotateAngleOut,
+			skillsRotateAngleIn
+		});
+	};
 
 	let handTop = $derived(innerHeight / 2);
 
+	let sections: HTMLElement[] = $state([]);
+
+	let sectionTitleMap: Map<HTMLElement, string> = $state(new Map());
+
 	onMount(() => {
-		let sections = [introSection, aboutSection, skillsSection, projectsSection];
-		let sectionTitleMap = new Map([
-			[introSection, 'Home'],
-			[aboutSection, 'About'],
+		sections = [introSection, aboutSection, skillsSection, projectsSection];
+		sectionTitleMap = new Map([
+			[projectsSection, 'Projects'],
 			[skillsSection, 'Skills'],
-			[projectsSection, 'Projects']
+			[aboutSection, 'About'],
+			[introSection, 'Home']
 		]);
-		window.addEventListener('scroll', (e) => {
-			for (let section of sections) {
-				if (elementIsMainInViewport(section)) {
-					currentSection = sectionTitleMap.get(section) || 'Home';
-					currentSectionString.set(currentSection);
-					break;
-				}
-			}
-		});
+		if (skillsSection) {
+			skillsSectionTop = skillsSection.offsetTop;
+		}
+		if (projectsSection) {
+			projectsSectionTop = projectsSection.offsetTop;
+		}
+		if (aboutSection) {
+			aboutSectionTop = aboutSection.offsetTop;
+		}
+		// window.addEventListener('scroll', (e) => {
+		// 	for (let section of sections) {
+		// 		// if (elementIsMainInViewport(section)) {
+		// 		if (scrollPosition > section.offsetTop - 100) {
+		// 			currentSection = sectionTitleMap.get(section) || 'Home';
+		// 			console.log(currentSection)
+		// 			currentSectionString.set(currentSection);
+		// 			break;
+		// 		}
+		// 	}
+		// });
 	});
 </script>
 
@@ -68,34 +123,60 @@
 	bind:scrollY={scrollPosition}
 	bind:innerHeight
 	bind:innerWidth
+	onclick={debugPrint}
 	onscroll={() => {
-		if (!scrollAnimationIsActive){
-		if (scrollPosition > innerHeight * .3 && scrollPosition < innerHeight * 1) {
-			scrollAnimationIsActive = true;
-			setTimeout(() => {
-				scrollAnimationIsActive = false
-			}, 1000)
-			window.scrollTo({
-				top: 2 * innerHeight,
-				behavior: 'smooth'
-			});
-		} else if (scrollPosition > innerHeight * 1 && scrollPosition < innerHeight * 1.7) {
-			scrollAnimationIsActive = true;
-			setTimeout(() => {
-				scrollAnimationIsActive = false
-			}, 1000)
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		}}
+		if (!scrollAnimationIsActive) {
+			if (scrollPosition > innerHeight * 0.3 && scrollPosition < innerHeight * 1.7) {
+				scrollAnimationIsActive = true;
+				setTimeout(() => {
+					scrollAnimationIsActive = false;
+				}, 500);
+				if (isScrollingUp) {
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					});
+				} else {
+					window.scrollTo({
+						top: aboutSectionTop,
+						behavior: 'smooth'
+					});
+				}
+			}
+		}
+		for (let section of sections) {
+			console.log(currentSection);
+			// if (elementIsMainInViewport(section)) {
+			if (scrollPosition > section.offsetTop - 100) {
+				currentSection = sectionTitleMap.get(section) || 'Home';
+				console.log(currentSection);
+				currentSectionString.set(currentSection);
+			}
+		}
+		previousScrollPosition = scrollPosition;
 	}}
 	on:hashchange={() => {
 		const hash = window.location.hash;
+		scrollAnimationIsActive = true;
+		setTimeout(() => {
+			scrollAnimationIsActive = false;
+		}, 500);
 
 		if (hash === '#about') {
 			window.scrollTo({
-				top: 2 * innerHeight,
+				top: aboutSectionTop,
+				behavior: 'smooth'
+			});
+		}
+		if (hash === '#skills') {
+			window.scrollTo({
+				top: skillsSectionTop,
+				behavior: 'smooth'
+			});
+		}
+		if (hash === '#projects') {
+			window.scrollTo({
+				top: projectsSectionTop,
 				behavior: 'smooth'
 			});
 		}
@@ -113,8 +194,8 @@
 <section
 	id="intro"
 	bind:this={introSection}
-	class:invisible={scrollPosition > startScrollSection1 + threshold}
-	style="transform: rotate3d(0, 1, 0, {rotateSection1}deg) translate3d({0}px, {translateYSection1}px, {translateZSection1}px);"
+	class="sticky"
+	style="transform: rotate3d(0, 1, 0, {introRotateAngle}deg) translate3d({0}px, {0}px, {translateZ}px);"
 >
 	<div class="image-container">
 		<span class="animation picture fancy-animation">
@@ -137,23 +218,18 @@
 	</div>
 </section>
 
-<svelte:document
-	onclick={() => {
-		console.log({ scrollPosition, threshold });
-	}}
-/>
-
-<div class="blank"></div>
-
 <!-- style="transform: perspective({innerHeight * 2}px) rotate3d(0, 1, 0, {3 * angleDeg}deg) translate3d(0px, {scrollY}px, -{3 * scrollY}px);" -->
 <!-- <section id="about" bind:this={aboutSection} style="{percentScrolled < 2 ? `transform: perspective(${innerWidth}px) rotate3d(0, 1, 0, ${paperAngleDeg}deg) translate3d(${paperXTranslate}px, ${scrollY - 2 * innerHeight}px, ${paperZTranslate}px)` : ''}" -->
+<!-- class:invisible={scrollPosition < threshold} -->
 <section
 	id="about"
 	bind:this={aboutSection}
-	class:invisible={scrollPosition < threshold}
-	style="transform: rotate3d(0, 1, 0, {rotateSection2in}deg) translate3d({0}px, {translateYSection2}px, {translateZSection1}px);"
+	style={scrollPosition < aboutToSkillsScrollThreshold
+		? `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px);`
+		: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px);`}
 >
 	<About />
+	<div class="blank"></div>
 	<div class="hand" style="top: {handTop}px">
 		<span>
 			<picture>
@@ -162,11 +238,37 @@
 		</span>
 	</div>
 </section>
-<section id="skills" bind:this={skillsSection}>
+<section
+	id="skills"
+	bind:this={skillsSection}
+	class:invisibleV2={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod ||
+		scrollPosition > skillsToProjectsScrollThreshold}
+	style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
+		? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px);`
+		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px);`}
+>
 	<Skills />
+	<div class="lefthand" style="top: {handTop}px">
+		<span>
+			<picture>
+				<img src={hand_picture} alt="Hand" />
+			</picture>
+		</span>
+	</div>
 </section>
-<section id="projects" bind:this={projectsSection}>
+<section
+	id="projects"
+	bind:this={projectsSection}
+	style="transform: rotate3d(0, 1, 0, {projectsRotateAngleIn}deg) translate3d(0px, 0px, {translateZ}px);"
+>
 	<Projects />
+	<div class="hand" style="top: {handTop}px">
+		<span>
+			<picture>
+				<img src={hand_picture} alt="Hand" />
+			</picture>
+		</span>
+	</div>
 </section>
 
 <style>
@@ -177,12 +279,22 @@
 		transform: translateX(432px);
 	}
 
-	.blank {
-		height: 200vh;
-		min-height: 200vh;
+	.lefthand {
+		position: absolute;
+		left: 0;
+		/* where the edge of the paper should be in the image for the illusion of behind the hand: */
+		-webkit-transform: scaleX(-1) translateX(432px);
+		transform: scaleX(-1) translateX(432px);
 	}
 
-	#projects, #skills, #about {
+	.blank {
+		height: 100vh;
+		min-height: 100vh;
+	}
+
+	#projects,
+	#skills,
+	#about {
 		border-image-slice: 72 72 72 72 fill;
 		border-image-width: 60px 60px 60px 60px;
 		border-image-outset: 0px 0px 0px 0px;
@@ -196,6 +308,12 @@
 		background-position-x: 30%;
 		background-size: 200px;
 		z-index: -1;
+		min-height: 200vh;
+	}
+
+	.sticky {
+		position: sticky;
+		top: 50px;
 	}
 
 	.invisible {
