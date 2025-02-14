@@ -320,7 +320,7 @@
 	#intro h1 {
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
-		background: #f55b4c;
+		background: #c13e32;
 		border-bottom: rgb(186, 181, 180) 35px solid;
 		transform: translate(0px, 1px);
 		margin-bottom: 0px;
@@ -331,7 +331,7 @@
 		border-bottom-right-radius: 20px;
 		background: rgb(186, 181, 180);
 		margin-top: 0px;
-		border-bottom: #f55b4c 30px solid;
+		border-bottom: #c13e32 30px solid;
 	}
 
 	section {
