@@ -34,6 +34,7 @@
 
 	// intro rotates out from 0 to innerHeight aka threshold
 	let introRotateAngle = $derived(Math.min(90, Math.round((scrollPosition / threshold) * 90)));
+	let introSkewAngleOut = $derived(introRotateAngle / 10);
 	// about rotates in from the top of blank canvas
 	let introToAboutScrollThreshold = $derived(aboutSectionTop - threshold);
 	// let aboutRotateAngleIn = $derived(Math.min(0, -90 + introRotateAngle));
@@ -48,6 +49,7 @@
 					)
 				)
 	);
+	let aboutSkewAngleIn = $derived(aboutRotateAngleIn / 10);
 
 	let aboutToSkillsScrollThreshold = $derived(skillsSectionTop - transitionPeriod);
 
@@ -59,7 +61,10 @@
 					Math.round(((scrollPosition - aboutToSkillsScrollThreshold) / transitionPeriod) * -90)
 				)
 	);
+	let aboutSkewAngleOut = $derived(aboutRotateAngleOut / 10);
+
 	let skillsRotateAngleIn = $derived(Math.max(0, 90 + aboutRotateAngleOut));
+	let skillsSkewAngleIn = $derived(skillsRotateAngleIn / 10);
 
 	let skillsToProjectsScrollThreshold = $derived(projectsSectionTop - transitionPeriod);
 
@@ -71,7 +76,10 @@
 					Math.round(((scrollPosition - skillsToProjectsScrollThreshold) / transitionPeriod) * 90)
 				)
 	);
+	let skillsSkewAngleOut = $derived(skillsRotateAngleOut / 10);
+
 	let projectsRotateAngleIn = $derived(Math.min(0, -90 + skillsRotateAngleOut));
+	let projectsSkewAngleIn = $derived(projectsRotateAngleIn / 10);
 
 	const debugPrint = () => {
 		console.log({
@@ -93,6 +101,59 @@
 		skillsSection,
 		projectsSection
 	]);
+	/*
+	160 -> 0 -> 160
+		angle: Math.abs(x) from x = 160 to -160
+		skew:  9 - Math.abs(-x / 10 + 9) from x=160 to 0 to 160
+		projectsScale: 1 -> .7 -> 1
+
+		0 -> 0
+		10 -> 1
+		80 -> 8
+		90 -> 9
+		100 -> 8
+
+		transform: matrix3d(
+				cos(95deg),  tan(10deg), sin(95deg),  0,
+				0,     1,    0,  0,
+			-sin(95deg),     0, cos(95deg),  300,
+				0,     0,    0,  1
+			); 
+		*/
+
+	const projectScaleChange = 0.3;
+	const projectScaleDifference = 1 - projectScaleChange;
+	const startAngle = 160;
+	const projectScaleChangePerAngle = projectScaleChange / startAngle;
+	let start: number = $state(-1);
+	let angle = $state(startAngle);
+	let folderAngle = $derived(Math.abs(angle));
+	let projectsScale = $derived(projectScaleDifference + projectScaleChangePerAngle * folderAngle);
+	let folderAngleRad = $derived((folderAngle * Math.PI) / 180);
+	let folderSkew = $derived(18 - Math.abs(-folderAngle / 5 + 18));
+	let folderSkewRad = $derived((folderSkew * Math.PI) / 180);
+	let folderCosAngle = $derived(Math.cos(folderAngleRad));
+	let folderSinAngle = $derived(Math.sin(folderAngleRad));
+	let folderTanSkew = $derived(Math.tan(folderSkewRad));
+
+	const animationSpeed = 0.3;
+	// const animationSpeed = 0.01;
+
+	function step(timestamp: number) {
+		if (start === -1) {
+			angle = startAngle;
+			start = timestamp;
+		}
+		console.log(folderSkew);
+		const elapsed = timestamp - start;
+
+		angle = Math.max(startAngle - animationSpeed * elapsed, -startAngle);
+		if (angle > -startAngle) {
+			requestAnimationFrame(step);
+		} else {
+			start = -1;
+		}
+	}
 
 	let sectionTitleMap: Map<HTMLElement, string> = $state(new Map());
 
@@ -192,7 +253,7 @@
 	id="intro"
 	bind:this={introSection}
 	class="sticky"
-	style="transform: rotate3d(0, 1, 0, {introRotateAngle}deg) translate3d({0}px, {0}px, {translateZ}px);"
+	style="transform: rotate3d(0, 1, 0, {introRotateAngle}deg) translate3d({0}px, {0}px, {translateZ}px) skewY({introSkewAngleOut}deg);"
 >
 	<div class="image-container">
 		<span class="animation picture fancy-animation">
@@ -222,8 +283,8 @@
 	id="about"
 	bind:this={aboutSection}
 	style={scrollPosition < aboutToSkillsScrollThreshold
-		? `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px);`
-		: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px);`}
+		? `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`
+		: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut}deg);`}
 >
 	<About />
 	<div class="blank"></div>
@@ -241,8 +302,8 @@
 	class:invisibleV2={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod ||
 		scrollPosition > skillsToProjectsScrollThreshold}
 	style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
-		? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px);`
-		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px);`}
+		? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
+		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
 >
 	<Skills />
 	<div class="lefthand" style="top: {handTop}px">
@@ -256,9 +317,31 @@
 <section
 	id="projects"
 	bind:this={projectsSection}
-	style="transform: rotate3d(0, 1, 0, {projectsRotateAngleIn}deg) translate3d(0px, 0px, {translateZ}px);"
+	style="transform: scale({projectsScale}) rotate3d(0, 1, 0, {projectsRotateAngleIn}deg) translate3d(0px, 0px, {translateZ}px) skewY({projectsSkewAngleIn}deg);"
 >
-	<Projects />
+	<div
+		class="folder"
+		style="transform: matrix3d({folderCosAngle}, {folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
+	>
+		<!-- <div class="hand" style="bottom: 0px; z-index: 2">
+		<span>
+			<picture>
+				<img src={hand_picture} alt="Hand" />
+			</picture>
+		</span>
+	</div> -->
+	</div>
+	<div
+		class="folder top"
+		style="transform: matrix3d({folderCosAngle}, -{folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
+	>
+	<h1>PROJECTS</h1>
+</div>
+	<Projects
+		buttonSort={() => {
+			requestAnimationFrame(step);
+		}}
+	/>
 	<div class="hand" style="top: {handTop}px">
 		<span>
 			<picture>
@@ -269,6 +352,14 @@
 </section>
 
 <style>
+
+	.top {
+		z-index: 3 !important;
+		align-items: center;
+		justify-content: center;
+		display: flex;
+	}
+
 	.hand {
 		position: absolute;
 		right: 0;
@@ -290,6 +381,10 @@
 	}
 
 	#projects,
+	.folder {
+		background-color: burlywood;
+	}
+
 	#skills,
 	#about {
 		border-image-slice: 72 72 72 72 fill;
@@ -311,10 +406,6 @@
 	.sticky {
 		position: sticky;
 		top: 50px;
-	}
-
-	.invisible {
-		display: none;
 	}
 
 	#intro h1 {
@@ -347,10 +438,6 @@
 		justify-content: center;
 	}
 
-	.animation {
-		/* border: 1px blue solid; */
-	}
-
 	img,
 	source {
 		max-width: 100%;
@@ -378,6 +465,39 @@
 		padding-bottom: 108px; /* to account for h1's height, to center name with picture */
 		rotate: 3deg;
 		transition: transform 0.4s ease-in-out;
+	}
+
+	.folder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		min-height: 100%;
+		min-width: 100%;
+		z-index: 1;
+		/* transform: matrix3d(1, 0, -0.5, -0.000001, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); */
+
+		/*
+
+
+		160 -> 0 -> 160
+		angle: Math.abs(x) from x = 160 to -160
+		skew:  9 - Math.abs(-x / 10 + 9) from x=160 to 0 to 160
+
+		0 -> 0
+		10 -> 1
+		80 -> 8
+		90 -> 9
+		100 -> 8
+
+		transform: matrix3d(
+				cos(95deg),  tan(10deg), sin(95deg),  0,
+				0,     1,    0,  0,
+			-sin(95deg),     0, cos(95deg),  300,
+				0,     0,    0,  1
+			); 
+		*/
+		/* transform: matrix3d(-0.09, 0.18, 1, 0, 0, 1, 0, 0, -1, 0, -0.09, 300, 0, 0, 0, 1); */
+		transform-origin: left center;
 	}
 
 	section {

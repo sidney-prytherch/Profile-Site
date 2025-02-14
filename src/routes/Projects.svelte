@@ -2,13 +2,15 @@
 	import projects from '$lib/data/projects.json';
 	import { TAG_CODE_TO_NAME_MAP, ProjectTagCodes } from './types';
 
-	let currentFilter = ProjectTagCodes.ALLPROJECTS;
+	let {buttonSort} = $props()
+
+	let currentFilter = $state(ProjectTagCodes.ALLPROJECTS);
 
 	// array of strings/tags whose filter is active
-	$: filteredProjects =
+	let filteredProjects = $derived(
 		currentFilter === ProjectTagCodes.ALLPROJECTS
 			? projects
-			: projects.filter((project) => project.tags.includes(currentFilter));
+			: projects.filter((project) => project.tags.includes(currentFilter)));
 
 	function setFilter(tagCode: string) {
 		currentFilter =
@@ -25,8 +27,9 @@
 		{#each TAG_CODE_TO_NAME_MAP.entries() as [tagCode, tagName]}
 			<button
 				class:selected={currentFilter === tagCode}
-				on:click={() => {
-					setFilter(tagCode);
+				onclick={() => {
+					buttonSort();
+					setTimeout(() => {setFilter(tagCode)}, 500);
 				}}>{tagName}</button
 			>
 		{/each}
