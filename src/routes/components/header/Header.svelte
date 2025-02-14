@@ -65,15 +65,12 @@
 		justify-content: space-between;
 		position: sticky;
 		top: 0;
+		z-index:1;
 	}
 
 	.corner {
 		width: 3em;
 		height: 3em;
-	}
-
-	.corner, .top-nav {
-		z-index: 2;
 	}
 
 	.corner a,
