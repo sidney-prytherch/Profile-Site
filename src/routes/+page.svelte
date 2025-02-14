@@ -102,23 +102,24 @@
 		projectsSection
 	]);
 	/*
-	160 -> 0 -> 160
-		angle: Math.abs(x) from x = 160 to -160
-		skew:  9 - Math.abs(-x / 10 + 9) from x=160 to 0 to 160
-		projectsScale: 1 -> .7 -> 1
+		folder open is 160deg, closed is 0deg, and then back to open is 160deg
+			angle: Math.abs(x) from x = 160 to -160
+		folder skew could be from ~20 down to 0 and back to 20, and can be calculated based on the angle above:
+			skew:  18 - Math.abs(-x / 5 + 18) from angle=160 to 0 to 160
+			need 2 of these for the top and bottom of the folder - one will be negative, the other positive
+		to zoom out to see the animation, scale the section from scale of 1, down to .7 when it's closed, then back to 1:
+			projectsScale: .7 + (1 - .7) * ((1-.7) / (2 * 160)) * angle from angle = 160 to 0 to 160
 
-		0 -> 0
-		10 -> 1
-		80 -> 8
-		90 -> 9
-		100 -> 8
+		Animation frame will be used to change the angle from 160 to -160, everything else uses $derived and constants based on angle
 
-		transform: matrix3d(
-				cos(95deg),  tan(10deg), sin(95deg),  0,
-				0,     1,    0,  0,
-			-sin(95deg),     0, cos(95deg),  300,
-				0,     0,    0,  1
-			); 
+		the folder will use the above data to animate like this:
+			transform: matrix3d(
+				cos(angle),		tan(skew),	sin(angle),	0,
+				0,				1,			0,			0,
+				-sin(angle),	0,			cos(angle),	translateZ (used elsewhere in code),
+				0,				0,			0,			1
+				); 
+		and also the above, but with tan(-skew) - the folder front page is actually 2 divs with different skews
 		*/
 
 	const projectScaleChange = 0.3;
@@ -137,7 +138,6 @@
 	let folderTanSkew = $derived(Math.tan(folderSkewRad));
 
 	const animationSpeed = 0.3;
-	// const animationSpeed = 0.01;
 
 	function step(timestamp: number) {
 		if (start === -1) {
@@ -323,27 +323,23 @@
 		class="folder"
 		style="transform: matrix3d({folderCosAngle}, {folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
 	>
-		<!-- <div class="hand" style="bottom: 0px; z-index: 2">
-		<span>
-			<picture>
-				<img src={hand_picture} alt="Hand" />
-			</picture>
-		</span>
-	</div> -->
 	</div>
 	<div
 		class="folder top"
 		style="transform: matrix3d({folderCosAngle}, -{folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
 	>
-	<h1>PROJECTS</h1>
-</div>
+		<h1>PROJECTS</h1>
+	</div>
 	<Projects
 		buttonSort={() => {
 			requestAnimationFrame(step);
-			window.scrollTo({
-				top: projectsSectionTop,
-				behavior: 'smooth'
-			});
+
+			setTimeout(() => {
+				window.scrollTo({
+					top: projectsSectionTop,
+					behavior: 'smooth'
+				});
+			}, 550); // 500 is when the filter applies and therefore when the page size may change, so 550, after this, is ideal
 		}}
 	/>
 	<div class="hand" style="top: {handTop}px">
@@ -356,12 +352,15 @@
 </section>
 
 <style>
-
 	.top {
 		z-index: 3 !important;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: center;
 		display: flex;
+	}
+
+	.top h1 {
+		padding-top: 50vh;
 	}
 
 	.hand {
@@ -387,6 +386,7 @@
 	#projects,
 	.folder {
 		background-color: burlywood;
+		min-height: 150vh;
 	}
 
 	#skills,
@@ -478,29 +478,6 @@
 		min-height: 100%;
 		min-width: 100%;
 		z-index: 1;
-		/* transform: matrix3d(1, 0, -0.5, -0.000001, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); */
-
-		/*
-
-
-		160 -> 0 -> 160
-		angle: Math.abs(x) from x = 160 to -160
-		skew:  9 - Math.abs(-x / 10 + 9) from x=160 to 0 to 160
-
-		0 -> 0
-		10 -> 1
-		80 -> 8
-		90 -> 9
-		100 -> 8
-
-		transform: matrix3d(
-				cos(95deg),  tan(10deg), sin(95deg),  0,
-				0,     1,    0,  0,
-			-sin(95deg),     0, cos(95deg),  300,
-				0,     0,    0,  1
-			); 
-		*/
-		/* transform: matrix3d(-0.09, 0.18, 1, 0, 0, 1, 0, 0, -1, 0, -0.09, 300, 0, 0, 0, 1); */
 		transform-origin: left center;
 	}
 

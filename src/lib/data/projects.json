@@ -34,7 +34,7 @@
     {
         "title": "Portfolio Website!",
         "tags": ["SVELTE", "HTML", "CSS", "TYPESCRIPT", "JAVASCRIPT", "WEB"],
-        "descriptionShort": "The website you're looking at now!",
+        "descriptionShort": "This very website!",
         "description": "Animations for this website were done myself, with no libraries used outside of those necessary for using Svelte and TypeScript.",
         "imagePath": [
             "images/self-portrait.png"
@@ -67,7 +67,7 @@
         "title": "Portuguese Verb Practice App",
         "tags": ["ANDROIDAPP", "KOTLIN", "SQLITE"],
         "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
-        "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which you can view conjugations and create a specific group of verbs to practice. You can also select verbs from verb endings, conjugation patterns, and irregularities. You can select which verb tenses/moods you want to practice, some of which differ slightly depending on whether you're practicing European Portuguese or Brazilian Portuguese. You can also change the game settings and subject pronouns.",
+        "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which the user can view conjugations and create a specific group of verbs to practice. The user can also select verbs from verb endings, conjugation patterns, and irregularities. They can select which verb tenses/moods they want to practice, some of which differ slightly depending on whether they're practicing European Portuguese or Brazilian Portuguese. They can also change the game settings and subject pronouns.",
         "imagePath": [
             "images/self-portrait.png"
         ],
@@ -77,7 +77,7 @@
         "title": "Hit or Blow Logic Puzzle App",
         "tags": ["ANDROIDAPP", "KOTLIN"],
         "descriptionShort": "A simple logic puzzle with customizable settings, in the form of an Android application. Based on the board game Mastermind which was made in 1970.",
-        "description": "In this logic puzzle game, you have a number of guesses to determine the which 4 colors are part of the code, and in which order. You can change how many colors may appear in the 4-color code, and how many guesses you have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
+        "description": "In this logic puzzle game, the user has a number of guesses to determine the which 4 colors are part of the code, and in which order. The user can change how many colors may appear in the 4-color code, and how many guesses they have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
         "imagePath": [
             "images/self-portrait.png"
         ],
@@ -87,7 +87,7 @@
         "title": "Train Tracks Logic Puzzle App",
         "tags": ["ANDROIDAPP", "KOTLIN"],
         "descriptionShort": "An Android app for generating and playing the Train Tracks logic puzzle.",
-        "description": "In this logic puzzle game, you have to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
+        "description": "In this logic puzzle game, the user has to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
         "imagePath": [
             "images/self-portrait.png"
         ],

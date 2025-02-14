@@ -21,7 +21,7 @@
 </script>
 
 <div id="project-section">
-	<h1>Projects</h1>
+	<h1>Personal Projects</h1>
 
 	<div class="tags">
 		{#each TAG_CODE_TO_NAME_MAP.entries() as [tagCode, tagName]}
@@ -35,20 +35,34 @@
 		{/each}
 	</div>
 
-	{#each filteredProjects as project}
-		<div class="project-group">
-			<h2>{project.title}</h2>
-			<div class="title-and-tags">
-				{#each project.tags as tag}
-					<span>{tag ? TAG_CODE_TO_NAME_MAP.get(tag) : '-'}</span>
-				{/each}
+	<div class="projects-section">
+
+	
+
+		{#each filteredProjects as project}
+			<div class="project-group">
+				<h2>{project.title}</h2>
+				<div class="title-and-tags">
+					{#each project.tags as tag}
+						<span>{tag ? TAG_CODE_TO_NAME_MAP.get(tag) : '-'}</span>
+					{/each}
+				</div>
+				<p>{project.description}</p>
 			</div>
-			<p>{project.description}</p>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </div>
 
 <style>
+
+	.projects-section {
+		background-color: antiquewhite;
+		padding: 10px;
+		margin: 10px;
+		min-height: 150vh;
+		border-radius: 10px;
+	}
+
 	h2,
 	p {
 		margin-block: 0;
