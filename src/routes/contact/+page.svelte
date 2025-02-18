@@ -4,5 +4,7 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Contact form will go here~</h1>
+	<a href="mailto:sidneyprytherch@gmail.com">Email</a>
+	<a href="https://www.linkedin.com/in/prytherchs/">LinkedIn</a>
+	<a rel="me" href="https://mastodon.social/@ThMnWthNVwls">Mastodon</a>
 </div>
