@@ -262,15 +262,19 @@
 			</picture>
 		</span>
 
-		<div class="animation name">
-			<h1>Hello! My name is</h1>
-			<div class="myName">
-				<span>
-					<picture>
-						<source srcset={name_animation} type="image/gif" />
-						<img src={name_animation_fallback} alt="Name" />
-					</picture>
-				</span>
+		<div class="pocket-container">
+			<div class="animation name">
+				<h1>Hello! My name is</h1>
+				<div class="myName">
+					<span>
+						<picture>
+							<source srcset={name_animation} type="image/gif" />
+							<img src={name_animation_fallback} alt="Name" />
+						</picture>
+					</span>
+				</div>
+			</div>
+			<div class="pocket">
 			</div>
 		</div>
 	</div>
@@ -320,8 +324,7 @@
 	<div
 		class="folder"
 		style="transform: matrix3d({folderCosAngle}, {folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
-	>
-	</div>
+	></div>
 	<div
 		class="folder top"
 		style="transform: matrix3d({folderCosAngle}, -{folderTanSkew}, {folderSinAngle}, 0, 0, 1, 0, 0, {-folderSinAngle}, 0, cos(95deg), {translateZ},0, 0, 0, 1);"
@@ -350,6 +353,21 @@
 </section>
 
 <style>
+
+.pocket-container {
+	position: relative
+}
+	.pocket {
+		background-image: url(/src/lib/images/pocket.svg);
+		width: 36vw;
+		background-size: cover;
+		height: 52vw;
+		position: absolute;
+		top: 50%;
+		padding: 10px;
+		right: 20%
+	}
+
 	.top {
 		z-index: 3 !important;
 		align-items: flex-start;
@@ -506,12 +524,16 @@
 		.lefthand {
 			display: none;
 		}
+		.pocket {
+			display: none;
+		}
 	}
 
 	@media (max-width: 615px) {
 		.picture {
 			padding-right: 40px; /* to match space to right (30+10) */
 		}
+		
 	}
 
 	h1 {

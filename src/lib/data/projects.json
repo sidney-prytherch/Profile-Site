@@ -92,5 +92,16 @@
             "images/self-portrait.png"
         ],
         "linkToCode": "https://github.com/sidney-prytherch/train-tracks"
+    },
+    {
+        "title": "Spanish-English Crossword Generator",
+        "tags": ["SVELTE", "WEB", "HTML", "CSS", "JAVASCRIPT", "TYPESCRIPT"],
+        "descriptionShort": "A website/PWA for generating bilingual Spanish and English crosswords.",
+        "description": "In this installable Progressive Web Application, you can generate Spanish-English crossword using more than 5000 words. Includes Spanish and English conjugations for verbs in the Present and Preterite tense. Includes various settings for personalizing the crosswords.",
+        "imagePath": [
+            "images/self-portrait.png"
+        ],
+        "link": "https://sidney-prytherch.github.io/vocab-site/",
+        "linkToCode": "https://github.com/sidney-prytherch/vocab-site"
     }
 ]
