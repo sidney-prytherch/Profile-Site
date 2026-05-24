@@ -6,10 +6,10 @@
 		while continuing to develop my understanding of BASIC.
 	</p>
 	<p>
-		Upon graduating High School, I attended Wentworth Institute of Technology in Boston,
+		After graduating High School, I attended Wentworth Institute of Technology in Boston,
 		Massachusetts where I got a Bachelor's degree in Computer Science with a Minor in Applied
-		Mathematics. With the help of my curiosity and strive for perfection, I received the highest
-		honors of my graduating class.
+		Mathematics. Additionally, motivated by my curiosity, ambition, and perfectionism, I received
+		the highest honors of my graduating class.
 	</p>
 	<p>
 		Since then, I have developed my Full-stack Web and Android development skills with over 5 years
@@ -20,7 +20,7 @@
 <style>
 	p {
 		padding: auto;
-		margin-left: 100px;
-		margin-right: 100px;
+		margin-left: 14vw;
+		margin-right: 14vw;
 	}
 </style>

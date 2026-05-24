@@ -274,8 +274,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="pocket">
-			</div>
+			<div class="pocket"></div>
 		</div>
 	</div>
 </section>
@@ -353,10 +352,9 @@
 </section>
 
 <style>
-
-.pocket-container {
-	position: relative
-}
+	.pocket-container {
+		position: relative;
+	}
 	.pocket {
 		background-image: url(/src/lib/images/pocket.svg);
 		width: 36vw;
@@ -365,7 +363,7 @@
 		position: absolute;
 		top: 50%;
 		padding: 10px;
-		right: 20%
+		right: 20%;
 	}
 
 	.top {
@@ -533,7 +531,6 @@
 		.picture {
 			padding-right: 40px; /* to match space to right (30+10) */
 		}
-		
 	}
 
 	h1 {
