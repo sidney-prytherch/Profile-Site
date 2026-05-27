@@ -83,17 +83,22 @@
 	let projectsSkewAngleIn = $derived(projectsRotateAngleIn / 10);
 
 	let viewportHeight = $state(0)
+	let viewportWidth = $state(0)
 
 	onMount(() => {
 		viewportHeight = window.innerHeight
+		viewportWidth = window.innerWidth
 		window.addEventListener('resize', () => {
-			viewportHeight = window.innerHeight
+			viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight)
+			viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth)
 		})
 	})
 
 
 	let aboutToSkillsTranslateY = $derived(viewportHeight + (scrollPosition - skillsSectionTop))
+	let aboutToSkillsTranslateX = $derived(viewportWidth * (scrollPosition - aboutToSkillsScrollThreshold) / transitionPeriod)
 	let skillsToProjectTranslateY = $derived(viewportHeight + (scrollPosition - projectsSectionTop))
+	let skillsToProjectTranslateX = $derived(-viewportWidth * (scrollPosition - skillsToProjectsScrollThreshold) / transitionPeriod)
 	let aboutToSkillsScrollCondition = $derived(skillsSectionTop - viewportHeight)
 	let skillsToProjectScrollCondition = $derived(projectsSectionTop - viewportHeight)
 
@@ -303,7 +308,8 @@
 	bind:this={aboutSection}
 	style={
 	scrollPosition > aboutToSkillsScrollCondition ? 
-	`transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
+	`transform: translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
+	// `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
 	// scrollPosition < aboutToSkillsScrollThreshold
 		// : `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`}
 	: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`}
@@ -322,7 +328,8 @@
 	id="skills"
 	bind:this={skillsSection}
 	style={scrollPosition > skillsToProjectScrollCondition  ?
-		`transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
+		`transform: translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
+		// `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
 
 	// style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
 	// 	? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
