@@ -15,6 +15,22 @@
 	import spanishCrossword2 from '$lib/images/Spanish Crossword/Spanish Crossword Example.png';
 	import spanishCrossword3 from '$lib/images/Spanish Crossword/Spanish Crossword Hints.png';
 	import spanishCrossword4 from '$lib/images/Spanish Crossword/Spanish Checking.png';
+	import hitOrBlow1 from '$lib/images/Hit or Blow/game.png';
+	import hitOrBlow2 from '$lib/images/Hit or Blow/game 2.png';
+	import hitOrBlow3 from '$lib/images/Hit or Blow/results.png';
+	import hitOrBlow4 from '$lib/images/Hit or Blow/settings.png';
+	import PtAppCrossword from '$lib/images/PT verb app/crossword.png';
+	import PtAppDictionary from '$lib/images/PT verb app/dictionary.png';
+	import PtAppMainPage from '$lib/images/PT verb app/main page.png';
+	import PtAppResults from '$lib/images/PT verb app/results.png';
+	import PtApptimerMode from '$lib/images/PT verb app/timer mode.png';
+	import PtAppWordsearch from '$lib/images/PT verb app/wordsearch.png';
+	import trainTracks1 from '$lib/images/Train Tracks/Screenshot_20250122_161548.png';
+	import trainTracks2 from '$lib/images/Train Tracks/Screenshot_20250122_161843.png';
+	import trainTracks3 from '$lib/images/Train Tracks/Screenshot_20250122_161909.png';
+	import trainTracks4 from '$lib/images/Train Tracks/train animation.gif';
+	import yamlEditor1 from '$lib/images/Yaml editor/main screen.png';
+	import yamlEditor2 from '$lib/images/Yaml editor/result yaml.png';
 	import { TAG_CODE_TO_NAME_MAP, ProjectTagCodes } from './types';
 
 	const images: { [imageCode: string]: string } = {
@@ -32,7 +48,23 @@
 		spanishCrossword1,
 		spanishCrossword2,
 		spanishCrossword3,
-		spanishCrossword4
+		spanishCrossword4,
+		hitOrBlow1,
+		hitOrBlow2,
+		hitOrBlow3,
+		hitOrBlow4,
+		PtAppCrossword,
+		PtAppDictionary,
+		PtAppMainPage,
+		PtAppResults,
+		PtApptimerMode,
+		PtAppWordsearch,
+		trainTracks4,
+		trainTracks1,
+		trainTracks2,
+		trainTracks3,
+		yamlEditor1,
+		yamlEditor2
 	};
 
 	let { buttonSort } = $props();
@@ -92,11 +124,13 @@
 						? 'hide'
 						: 'show more'} details</button
 				>
-				<ul class:expanded={projectExpanded[i]}>
-					{#each project.extraDetails as extraDetail}
-						<li><p>{extraDetail}</p></li>
-					{/each}
-				</ul>
+				{#if !!project.extraDetails && project.extraDetails.length > 0}
+					<ul class:expanded={projectExpanded[i]}>
+						{#each project.extraDetails as extraDetail}
+							<li><p>{extraDetail}</p></li>
+						{/each}
+					</ul>
+				{/if}
 				<div>
 					{#each project.imagePath as imgSrc}
 						<img src={images[imgSrc]} alt="Name" />
@@ -144,6 +178,7 @@
 		margin: 1%;
 		border-radius: 10px;
 		border: #00000055 solid 5px;
+		max-height: 400px;
 	}
 
 	.expanded {
@@ -177,8 +212,10 @@
 		background-color: antiquewhite;
 		padding: 10px;
 		margin: 10px;
-		min-height: 150vh;
+		min-height: 120vh;
 		border-radius: 10px;
+		overflow-y: scroll;
+		max-height: 120vh;
 	}
 
 	h2,

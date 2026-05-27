@@ -29,9 +29,9 @@
 	let skillsSectionTop = $state(2000);
 	let projectsSectionTop = $state(2000);
 
-	let transitionPeriod = $derived(Math.round(innerHeight / 2));
+	let transitionPeriod = $derived(Math.round(innerHeight));
 	let translateZ = $derived(Math.round(innerWidth * -0.55));
-
+	
 	// intro rotates out from 0 to innerHeight aka threshold
 	let introRotateAngle = $derived(Math.min(90, Math.round((scrollPosition / threshold) * 90)));
 	let introSkewAngleOut = $derived(introRotateAngle / 10);
@@ -50,7 +50,8 @@
 				)
 	);
 	let aboutSkewAngleIn = $derived(aboutRotateAngleIn / 10);
-
+	
+	
 	let aboutToSkillsScrollThreshold = $derived(skillsSectionTop - transitionPeriod);
 
 	let aboutRotateAngleOut = $derived(
@@ -81,6 +82,21 @@
 	let projectsRotateAngleIn = $derived(Math.min(0, -90 + skillsRotateAngleOut));
 	let projectsSkewAngleIn = $derived(projectsRotateAngleIn / 10);
 
+	let viewportHeight = $state(0)
+
+	onMount(() => {
+		viewportHeight = window.innerHeight
+		window.addEventListener('resize', () => {
+			viewportHeight = window.innerHeight
+		})
+	})
+
+
+	let aboutToSkillsTranslateY = $derived(viewportHeight + (scrollPosition - skillsSectionTop))
+	let skillsToProjectTranslateY = $derived(viewportHeight + (scrollPosition - projectsSectionTop))
+	let aboutToSkillsScrollCondition = $derived(skillsSectionTop - viewportHeight)
+	let skillsToProjectScrollCondition = $derived(projectsSectionTop - viewportHeight)
+
 	const debugPrint = () => {
 		console.log({
 			aboutSectionTop,
@@ -107,7 +123,7 @@
 		folder skew could be from ~20 down to 0 and back to 20, and can be calculated based on the angle above:
 			skew:  18 - Math.abs(-x / 5 + 18) from angle=160 to 0 to 160
 			need 2 of these for the top and bottom of the folder - one will be negative, the other positive
-		to zoom out to see the animation, scale the section from scale of 1, down to .7 when it's closed, then back to 1:
+		to zoom out to see the animation, scale the section from scale of 1, down to .9 when it's closed, then back to 1:
 			projectsScale: .7 + (1 - .7) * ((1-.7) / (2 * 160)) * angle from angle = 160 to 0 to 160
 
 		Animation frame will be used to change the angle from 160 to -160, everything else uses $derived and constants based on angle
@@ -285,9 +301,12 @@
 <section
 	id="about"
 	bind:this={aboutSection}
-	style={scrollPosition < aboutToSkillsScrollThreshold
-		? `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`
-		: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut}deg);`}
+	style={
+	scrollPosition > aboutToSkillsScrollCondition ? 
+	`transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
+	// scrollPosition < aboutToSkillsScrollThreshold
+		// : `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`}
+	: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`}
 >
 	<About />
 	<!-- <div class="blank"></div> -->
@@ -302,9 +321,13 @@
 <section
 	id="skills"
 	bind:this={skillsSection}
-	style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
-		? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
-		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
+	style={scrollPosition > skillsToProjectScrollCondition  ?
+		`transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
+
+	// style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
+	// 	? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
+	// 	: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
+		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn * 0}deg);`}
 >
 	<Skills />
 	<div class="lefthand" style="top: {handTop}px">
@@ -396,6 +419,7 @@
 	.folder {
 		background-color: burlywood;
 		min-height: 150vh;
+		max-height: 150vh;
 	}
 
 	#skills,

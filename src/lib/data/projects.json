@@ -82,6 +82,7 @@
             "JAVA",
             "DESKTOPAPP"
         ],
+        "extraDetails": [],
         "descriptionShort": "A previous iteration of the Crochet Pattern Automator, but made with Java in a desktop application.",
         "description": "Users can change settings and upload an image for creating a crochet pattern. This app also uses K-Means Clustering algorithm. Along with the pattern instructions, this app also created a simulated image of the final crochet work.",
         "imagePath": [],
@@ -103,7 +104,6 @@
             "snake2",
             "snake3",
             "snake4"
-
         ],
         "extraDetails": [
             ""
@@ -123,7 +123,8 @@
         "descriptionShort": "Single page site for creating YAML settings files for an application called Archipelago",
         "description": "This website allows users create complex yaml files based on a number of settings. Being heavily based in data, this project takes advantage of Svelte's reactiveness with changes to data updating live.",
         "imagePath": [
-            "$lib/images/name.png"
+            "yamlEditor1",
+            "yamlEditor2"
         ],
         "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/",
         "linkToCode": "https://github.com/sidney-prytherch/archipelago-yaml-editor"
@@ -138,7 +139,12 @@
         "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
         "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which the user can view conjugations and create a specific group of verbs to practice. The user can also select verbs from verb endings, conjugation patterns, and irregularities. They can select which verb tenses/moods they want to practice, some of which differ slightly depending on whether they're practicing European Portuguese or Brazilian Portuguese. They can also change the game settings and subject pronouns.",
         "imagePath": [
-            "$lib/images/name.png"
+            "PtAppMainPage",
+            "PtAppDictionary",
+            "PtAppCrossword",
+            "PtAppWordsearch",
+            "PtApptimerMode",
+            "PtAppResults"
         ],
         "linkToCode": "https://github.com/sidney-prytherch/Portuguese-Verb-Practice-App"
     },
@@ -151,7 +157,10 @@
         "descriptionShort": "A simple logic puzzle with customizable settings, in the form of an Android application. Based on the board game Mastermind which was made in 1970.",
         "description": "In this logic puzzle game, the user has a number of guesses to determine the which 4 colors are part of the code, and in which order. The user can change how many colors may appear in the 4-color code, and how many guesses they have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
         "imagePath": [
-            "$lib/images/name.png"
+            "hitOrBlow1",
+            "hitOrBlow2",
+            "hitOrBlow3",
+            "hitOrBlow4"
         ],
         "linkToCode": "https://github.com/sidney-prytherch/Color-Code-Game-App"
     },
@@ -164,7 +173,10 @@
         "descriptionShort": "An Android app for generating and playing the Train Tracks logic puzzle.",
         "description": "In this logic puzzle game, the user has to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
         "imagePath": [
-            "$lib/images/name.png"
+            "trainTracks4",
+            "trainTracks1",
+            "trainTracks2",
+            "trainTracks3"
         ],
         "linkToCode": "https://github.com/sidney-prytherch/train-tracks"
     },
