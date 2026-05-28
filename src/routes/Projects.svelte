@@ -2,8 +2,8 @@
 	import projects from '$lib/data/projects.json';
 	import nameImage from '$lib/images/name.png';
 	import kirby1 from '$lib/images/kirby.gif';
-	import kirby2 from '$lib/images/kirby/kirby.gif';
-	import kirby3 from '$lib/images/kirby/kirby.gif';
+	import kirby2 from '$lib/images/kirby.gif';
+	import kirby3 from '$lib/images/kirby.gif';
 	import crochet1 from '$lib/images/CrochetV2/crochetOne.png';
 	import crochet2 from '$lib/images/CrochetV2/crochetTwo.png';
 	import crochet3 from '$lib/images/CrochetV2/crochetThree.png';
