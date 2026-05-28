@@ -40,7 +40,7 @@
 	// let aboutRotateAngleIn = $derived(Math.min(0, -90 + introRotateAngle));
 	let aboutRotateAngleIn = $derived(
 		scrollPosition < introToAboutScrollThreshold
-			? 0
+			? 90
 			: Math.min(
 					0,
 					Math.max(
