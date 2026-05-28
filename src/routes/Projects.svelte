@@ -1,70 +1,70 @@
 <script lang="ts">
 	import projects from '$lib/data/projects.json';
 	import nameImage from '$lib/images/name.png';
-	import kirby1 from '$lib/images/Kirby site animation.gif';
-	import kirby2 from '$lib/images/kirby Site/Kirby Site 2.png';
-	import kirby3 from '$lib/images/kirby Site/Kirby Site 3.png';
-	import crochet1 from '$lib/images/Crochet V2/crochetOne.png';
-	import crochet2 from '$lib/images/Crochet V2/crochetTwo.png';
-	import crochet3 from '$lib/images/Crochet V2/crochetThree.png';
-	import snake1 from '$lib/images/Snake/Snake1.gif';
-	import snake2 from '$lib/images/Snake/Snake2.png';
-	import snake3 from '$lib/images/Snake/Snake3.png';
-	import snake4 from '$lib/images/Snake/Snake4.png';
-	import spanishCrossword1 from '$lib/images/Spanish Crossword/Spanish Crossword Options.png';
-	import spanishCrossword2 from '$lib/images/Spanish Crossword/Spanish Crossword Example.png';
-	import spanishCrossword3 from '$lib/images/Spanish Crossword/Spanish Crossword Hints.png';
-	import spanishCrossword4 from '$lib/images/Spanish Crossword/Spanish Checking.png';
-	import hitOrBlow1 from '$lib/images/Hit or Blow/game.png';
-	import hitOrBlow2 from '$lib/images/Hit or Blow/game 2.png';
-	import hitOrBlow3 from '$lib/images/Hit or Blow/results.png';
-	import hitOrBlow4 from '$lib/images/Hit or Blow/settings.png';
-	import PtAppCrossword from '$lib/images/PT verb app/crossword.png';
-	import PtAppDictionary from '$lib/images/PT verb app/dictionary.png';
-	import PtAppMainPage from '$lib/images/PT verb app/main page.png';
-	import PtAppResults from '$lib/images/PT verb app/results.png';
-	import PtApptimerMode from '$lib/images/PT verb app/timer mode.png';
-	import PtAppWordsearch from '$lib/images/PT verb app/wordsearch.png';
-	import trainTracks1 from '$lib/images/Train Tracks/Screenshot_20250122_161548.png';
-	import trainTracks2 from '$lib/images/Train Tracks/Screenshot_20250122_161843.png';
-	import trainTracks3 from '$lib/images/Train Tracks/Screenshot_20250122_161909.png';
-	import trainTracks4 from '$lib/images/Train Tracks/train animation.gif';
-	import yamlEditor1 from '$lib/images/Yaml editor/main screen.png';
-	import yamlEditor2 from '$lib/images/Yaml editor/result yaml.png';
+	// import kirby1 from '$lib/images/kirby Site/Kirby site animation.gif';
+	// import kirby2 from '$lib/images/kirby Site/Kirby Site 2.png';
+	// import kirby3 from '$lib/images/kirby Site/Kirby Site 3.png';
+	// import crochet1 from '$lib/images/Crochet V2/crochetOne.png';
+	// import crochet2 from '$lib/images/Crochet V2/crochetTwo.png';
+	// import crochet3 from '$lib/images/Crochet V2/crochetThree.png';
+	// import snake1 from '$lib/images/Snake/Snake1.gif';
+	// import snake2 from '$lib/images/Snake/Snake2.png';
+	// import snake3 from '$lib/images/Snake/Snake3.png';
+	// import snake4 from '$lib/images/Snake/Snake4.png';
+	// import spanishCrossword1 from '$lib/images/Spanish Crossword/Spanish Crossword Options.png';
+	// import spanishCrossword2 from '$lib/images/Spanish Crossword/Spanish Crossword Example.png';
+	// import spanishCrossword3 from '$lib/images/Spanish Crossword/Spanish Crossword Hints.png';
+	// import spanishCrossword4 from '$lib/images/Spanish Crossword/Spanish Checking.png';
+	// import hitOrBlow1 from '$lib/images/Hit or Blow/game.png';
+	// import hitOrBlow2 from '$lib/images/Hit or Blow/game 2.png';
+	// import hitOrBlow3 from '$lib/images/Hit or Blow/results.png';
+	// import hitOrBlow4 from '$lib/images/Hit or Blow/settings.png';
+	// import PtAppCrossword from '$lib/images/PT verb app/crossword.png';
+	// import PtAppDictionary from '$lib/images/PT verb app/dictionary.png';
+	// import PtAppMainPage from '$lib/images/PT verb app/main page.png';
+	// import PtAppResults from '$lib/images/PT verb app/results.png';
+	// import PtApptimerMode from '$lib/images/PT verb app/timer mode.png';
+	// import PtAppWordsearch from '$lib/images/PT verb app/wordsearch.png';
+	// import trainTracks1 from '$lib/images/Train Tracks/Screenshot_20250122_161548.png';
+	// import trainTracks2 from '$lib/images/Train Tracks/Screenshot_20250122_161843.png';
+	// import trainTracks3 from '$lib/images/Train Tracks/Screenshot_20250122_161909.png';
+	// import trainTracks4 from '$lib/images/Train Tracks/train animation.gif';
+	// import yamlEditor1 from '$lib/images/Yaml editor/main screen.png';
+	// import yamlEditor2 from '$lib/images/Yaml editor/result yaml.png';
 	import { TAG_CODE_TO_NAME_MAP, ProjectTagCodes } from './types';
 
 	const images: { [imageCode: string]: string } = {
 		nameImage: nameImage,
-		kirby1,
-		kirby2,
-		kirby3,
-		crochet1,
-		crochet2,
-		crochet3,
-		snake1,
-		snake2,
-		snake3,
-		snake4,
-		spanishCrossword1,
-		spanishCrossword2,
-		spanishCrossword3,
-		spanishCrossword4,
-		hitOrBlow1,
-		hitOrBlow2,
-		hitOrBlow3,
-		hitOrBlow4,
-		PtAppCrossword,
-		PtAppDictionary,
-		PtAppMainPage,
-		PtAppResults,
-		PtApptimerMode,
-		PtAppWordsearch,
-		trainTracks4,
-		trainTracks1,
-		trainTracks2,
-		trainTracks3,
-		yamlEditor1,
-		yamlEditor2
+		// kirby1,
+		// kirby2,
+		// kirby3,
+		// crochet1,
+		// crochet2,
+		// crochet3,
+		// snake1,
+		// snake2,
+		// snake3,
+		// snake4,
+		// spanishCrossword1,
+		// spanishCrossword2,
+		// spanishCrossword3,
+		// spanishCrossword4,
+		// hitOrBlow1,
+		// hitOrBlow2,
+		// hitOrBlow3,
+		// hitOrBlow4,
+		// PtAppCrossword,
+		// PtAppDictionary,
+		// PtAppMainPage,
+		// PtAppResults,
+		// PtApptimerMode,
+		// PtAppWordsearch,
+		// trainTracks4,
+		// trainTracks1,
+		// trainTracks2,
+		// trainTracks3,
+		// yamlEditor1,
+		// yamlEditor2
 	};
 
 	let { buttonSort } = $props();
