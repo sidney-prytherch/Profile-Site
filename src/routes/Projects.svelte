@@ -1,7 +1,7 @@
 <script lang="ts">
 	import projects from '$lib/data/projects.json';
 	import nameImage from '$lib/images/name.png';
-	import kirby1 from '$lib/images/kirby Site/Kirby site animation.gif';
+	import kirby1 from '$lib/images/Kirby site animation.gif';
 	import kirby2 from '$lib/images/kirby Site/Kirby Site 2.png';
 	import kirby3 from '$lib/images/kirby Site/Kirby Site 3.png';
 	import crochet1 from '$lib/images/Crochet V2/crochetOne.png';
