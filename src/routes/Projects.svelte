@@ -1,9 +1,9 @@
 <script lang="ts">
 	import projects from '$lib/data/projects.json';
 	import nameImage from '$lib/images/name.png';
-	import kirby1 from '$lib/images/kirbySite/KirbySiteAnimation.gif';
-	import kirby2 from '$lib/images/kirbySite/KirbySite2.png';
-	import kirby3 from '$lib/images/kirbySite/KirbySite3.png';
+	import kirby1 from '$lib/images/kirby/kirby.gif';
+	import kirby2 from '$lib/images/kirby/kirby.gif';
+	import kirby3 from '$lib/images/kirby/kirby.gif';
 	import crochet1 from '$lib/images/CrochetV2/crochetOne.png';
 	import crochet2 from '$lib/images/CrochetV2/crochetTwo.png';
 	import crochet3 from '$lib/images/CrochetV2/crochetThree.png';
@@ -23,7 +23,7 @@
 	import PtAppDictionary from '$lib/images/PTVerbApp/dictionary.png';
 	import PtAppMainPage from '$lib/images/PTVerbApp/mainPage.png';
 	import PtAppResults from '$lib/images/PTVerbApp/results.png';
-	import PtApptimerMode from '$lib/images/PTVerbApp/timer mode.png';
+	import PtApptimerMode from '$lib/images/PTVerbApp/TimerMode.png';
 	import PtAppWordsearch from '$lib/images/PTVerbApp/wordsearch.png';
 	import trainTracks1 from '$lib/images/TrainTracks/Screenshot_20250122_161548.png';
 	import trainTracks2 from '$lib/images/TrainTracks/Screenshot_20250122_161843.png';
