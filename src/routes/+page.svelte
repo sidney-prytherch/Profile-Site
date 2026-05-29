@@ -391,6 +391,11 @@
 </section>
 
 <style>
+
+	* {
+		overflow-x: hidden;
+	}
+
 	.pocket-container {
 		position: relative;
 	}
