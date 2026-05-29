@@ -268,7 +268,6 @@
 	<title>{currentSection} • Sidney Prytherch</title>
 	<meta name="description" content="Sidney's awesome profile website" />
 </svelte:head>
-
 <!-- <section id="intro" bind:this={introSection} style="translate: 10px {scrollY}px {innerHeight}px; rotate: y {(90) * (scrollY / innerHeight)}deg;"> -->
 <!-- <section id="intro" bind:this={introSection} style="transform: matrix3d({scrollCos},0,{scrollSin},0,0.00,1,0.00,0,-{scrollSin},0,{scrollCos},0,0,{scrollY},-{scrollY},1)"> -->
 <!-- <section id="intro" bind:this={introSection} style="transform: perspective(1000px) rotate3d(0, 1, 0, {3 * angleDeg}deg) translate3d(0px, {scrollY}px, -{2 * scrollY}px);"> -->
@@ -391,7 +390,7 @@
 </section>
 
 <style>
-
+	
 	.pocket-container {
 		position: relative;
 	}

@@ -21,6 +21,32 @@
         "linkToCode": "https://github.com/sidney-prytherch/Profile-Site"
     },
     {
+        "title": "Portuguese Verb Practice App",
+        "tags": [
+            "ANDROIDAPP",
+            "KOTLIN",
+            "SQLITE"
+        ],
+        "extraDetails": [
+            "Users can also select verbs from verb endings, conjugation patterns, and irregularities.", 
+            "Users can select which verb tenses/moods (i.e. present subjunctive) they want to practice.", 
+            "Some verbs differ slightly depending on whether the app is set to European Portuguese or Brazilian Portuguese.",
+            "Settings also include subject pronouns (I, you, he/she, etc) and game settings (crossword/wordsearch grid size).",
+            "Quiz mode can be set to timer, or number of questions. On the results screen, users can see what they got right and wrong, and the correct answer."
+        ],
+        "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
+        "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which the user can view conjugations and create a specific group of verbs to practice.",
+        "imagePath": [
+            "PtAppMainPage",
+            "PtAppDictionary",
+            "PtAppCrossword",
+            "PtAppWordsearch",
+            "PtApptimerMode",
+            "PtAppResults"
+        ],
+        "linkToCode": "https://github.com/sidney-prytherch/Portuguese-Verb-Practice-App"
+    },
+    {
         "title": "Kirby Color Selector",
         "tags": [
             "JAVASCRIPT",
@@ -77,18 +103,6 @@
         "linkToCode": "https://github.com/sidney-prytherch/graphgan"
     },
     {
-        "title": "Crochet Pattern Automator v1",
-        "tags": [
-            "JAVA",
-            "DESKTOPAPP"
-        ],
-        "extraDetails": [],
-        "descriptionShort": "A previous iteration of the Crochet Pattern Automator, but made with Java in a desktop application.",
-        "description": "Users can change settings and upload an image for creating a crochet pattern. This app also uses K-Means Clustering algorithm. Along with the pattern instructions, this app also created a simulated image of the final crochet work.",
-        "imagePath": [],
-        "linkToCode": "https://github.com/sidney-prytherch/CrochetPatternCreator"
-    },
-    {
         "title": "Snake (HTML5 game)",
         "tags": [
             "HTML",
@@ -98,7 +112,7 @@
             "WEB"
         ],
         "descriptionShort": "HTML5 game rendition of the classic game, Snake.",
-        "description": "Users can change number settings, including player count (1 or 2), speed/difficulty, grid size, and snake color. Code was written entirely with HTML, CSS, and TypeScript, which was transpiled automatically to JavaScript for the live page - no other libraries were used.",
+        "description": "Users can change a number of settings, including player count (1 or 2), speed/difficulty, grid size, and snake color.",
         "imagePath": [
             "snake1",
             "snake2",
@@ -106,7 +120,10 @@
             "snake4"
         ],
         "extraDetails": [
-            ""
+            "Code was written entirely with HTML, CSS, and TypeScript, which was transpiled to JavaScript for the live page - no libraries were used.",
+            "Controls for players are by using WASD and arrow keys",
+            "Snake color can be preset from a number of options, including some common solid colors, a phase between the colors of the rainbow, and phase between 2 fully random colors",
+            "For phasing colors, more shades between the colors are added as the snake gets longer"
         ],
         "link": "https://sidney-prytherch.github.io/Snake/",
         "linkToCode": "https://github.com/sidney-prytherch/snake"
@@ -121,38 +138,28 @@
             "JAVASCRIPT"
         ],
         "descriptionShort": "Single page site for creating YAML settings files for an application called Archipelago",
-        "description": "This website allows users create complex yaml files based on a number of settings. Being heavily based in data, this project takes advantage of Svelte's reactiveness with changes to data updating live.",
+        "description": "This website allows users create complex YAML files based on a number of settings. Being heavily based in data, this project takes advantage of Svelte's reactive features with changes to data affecting the page immediately.",
         "imagePath": [
             "yamlEditor1",
             "yamlEditor2"
         ],
+        "extraDetails": [
+            "YAML files are for settings for a multiworld randomizer. Each game has individual settings and each are selectable in the website.",
+            "At the bottom of the site is a button to download the data as a YAML file, which is ready to be imported into the archipelago files for use",
+            "My favorite feature is the background, with which I used my favorite CSS feature - border-background and background."
+        ],
         "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/",
         "linkToCode": "https://github.com/sidney-prytherch/archipelago-yaml-editor"
-    },
-    {
-        "title": "Portuguese Verb Practice App",
-        "tags": [
-            "ANDROIDAPP",
-            "KOTLIN",
-            "SQLITE"
-        ],
-        "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
-        "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which the user can view conjugations and create a specific group of verbs to practice. The user can also select verbs from verb endings, conjugation patterns, and irregularities. They can select which verb tenses/moods they want to practice, some of which differ slightly depending on whether they're practicing European Portuguese or Brazilian Portuguese. They can also change the game settings and subject pronouns.",
-        "imagePath": [
-            "PtAppMainPage",
-            "PtAppDictionary",
-            "PtAppCrossword",
-            "PtAppWordsearch",
-            "PtApptimerMode",
-            "PtAppResults"
-        ],
-        "linkToCode": "https://github.com/sidney-prytherch/Portuguese-Verb-Practice-App"
     },
     {
         "title": "Hit or Blow Logic Puzzle App",
         "tags": [
             "ANDROIDAPP",
             "KOTLIN"
+        ],
+        "extraDetails": [
+            "Includes a settings page, in which the number of colors can be changed, as well as the number of guesses allowed",
+            "Includes a how-to-play screen and a results screen."
         ],
         "descriptionShort": "A simple logic puzzle with customizable settings, in the form of an Android application. Based on the board game Mastermind which was made in 1970.",
         "description": "In this logic puzzle game, the user has a number of guesses to determine the which 4 colors are part of the code, and in which order. The user can change how many colors may appear in the 4-color code, and how many guesses they have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
@@ -172,6 +179,9 @@
         ],
         "descriptionShort": "An Android app for generating and playing the Train Tracks logic puzzle.",
         "description": "In this logic puzzle game, the user has to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
+        "extraDetails": [
+            "Most fun part of making this application was the animation, which is used to transfer from the start screen to the game screen. Train is from an SVG file"
+        ], 
         "imagePath": [
             "trainTracks4",
             "trainTracks1",
@@ -200,5 +210,16 @@
         ],
         "link": "https://sidney-prytherch.github.io/vocab-site/",
         "linkToCode": "https://github.com/sidney-prytherch/vocab-site"
+    },
+    {
+        "title": "Crochet Pattern Automator v1",
+        "tags": [
+            "JAVA",
+            "DESKTOPAPP"
+        ],
+        "descriptionShort": "A previous iteration of the Crochet Pattern Automator, but made with Java as a basic desktop application.",
+        "description": "Users can change settings and upload an image for creating a crochet pattern. This app also uses K-Means Clustering algorithm. Along with the pattern instructions, this app also created a simulated image of the final crochet work.",
+        "imagePath": [],
+        "linkToCode": "https://github.com/sidney-prytherch/CrochetPatternCreator"
     }
 ]
