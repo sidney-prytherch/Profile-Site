@@ -31,7 +31,7 @@
 
 	let transitionPeriod = $derived(Math.round(innerHeight));
 	let translateZ = $derived(Math.round(innerWidth * -0.55));
-	
+
 	// intro rotates out from 0 to innerHeight aka threshold
 	let introRotateAngle = $derived(Math.min(90, Math.round((scrollPosition / threshold) * 90)));
 	let introSkewAngleOut = $derived(introRotateAngle / 10);
@@ -50,8 +50,7 @@
 				)
 	);
 	let aboutSkewAngleIn = $derived(aboutRotateAngleIn / 10);
-	
-	
+
 	let aboutToSkillsScrollThreshold = $derived(skillsSectionTop - transitionPeriod);
 
 	let aboutRotateAngleOut = $derived(
@@ -82,25 +81,28 @@
 	let projectsRotateAngleIn = $derived(Math.min(0, -90 + skillsRotateAngleOut));
 	let projectsSkewAngleIn = $derived(projectsRotateAngleIn / 10);
 
-	let viewportHeight = $state(0)
-	let viewportWidth = $state(0)
+	let viewportHeight = $state(0);
+	let viewportWidth = $state(0);
 
 	onMount(() => {
-		viewportHeight = window.innerHeight
-		viewportWidth = window.innerWidth
+		viewportHeight = window.innerHeight;
+		viewportWidth = window.innerWidth;
 		window.addEventListener('resize', () => {
-			viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight)
-			viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth)
-		})
-	})
+			viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+			viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth);
+		});
+	});
 
-
-	let aboutToSkillsTranslateY = $derived(viewportHeight + (scrollPosition - skillsSectionTop))
-	let aboutToSkillsTranslateX = $derived(viewportWidth * (scrollPosition - aboutToSkillsScrollThreshold) / transitionPeriod)
-	let skillsToProjectTranslateY = $derived(viewportHeight + (scrollPosition - projectsSectionTop))
-	let skillsToProjectTranslateX = $derived(-viewportWidth * (scrollPosition - skillsToProjectsScrollThreshold) / transitionPeriod)
-	let aboutToSkillsScrollCondition = $derived(skillsSectionTop - viewportHeight)
-	let skillsToProjectScrollCondition = $derived(projectsSectionTop - viewportHeight)
+	let aboutToSkillsTranslateY = $derived(viewportHeight + (scrollPosition - skillsSectionTop));
+	let aboutToSkillsTranslateX = $derived(
+		(viewportWidth * (scrollPosition - aboutToSkillsScrollThreshold)) / transitionPeriod
+	);
+	let skillsToProjectTranslateY = $derived(viewportHeight + (scrollPosition - projectsSectionTop));
+	let skillsToProjectTranslateX = $derived(
+		(-viewportWidth * (scrollPosition - skillsToProjectsScrollThreshold)) / transitionPeriod
+	);
+	let aboutToSkillsScrollCondition = $derived(skillsSectionTop - viewportHeight);
+	let skillsToProjectScrollCondition = $derived(projectsSectionTop - viewportHeight);
 
 	const debugPrint = () => {
 		console.log({
@@ -274,7 +276,7 @@
 	id="intro"
 	bind:this={introSection}
 	class="sticky"
-	style="transform: rotate3d(0, 1, 0, {introRotateAngle}deg) translate3d({0}px, {0}px, {translateZ}px) skewY({introSkewAngleOut}deg);"
+	style="transform: rotate3d(0, 1, 0, {introRotateAngle}deg) translate3d(0px, 0px, {translateZ}px) skewY({introSkewAngleOut}deg);"
 >
 	<div class="image-container">
 		<span class="animation picture fancy-animation">
@@ -306,13 +308,16 @@
 <section
 	id="about"
 	bind:this={aboutSection}
-	style={
-	scrollPosition > aboutToSkillsScrollCondition ? 
-	`transform: translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
-	// `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);` 
-	// scrollPosition < aboutToSkillsScrollThreshold
-		// : `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`}
-	: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`}
+	style={viewportWidth < 720
+		? scrollPosition < aboutToSkillsScrollThreshold
+			? `transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`
+			: `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut}deg);`
+		: scrollPosition > aboutToSkillsScrollCondition
+			? `transform: translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`
+			: // `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(${aboutToSkillsTranslateX}px, ${aboutToSkillsTranslateY}px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`
+				// scrollPosition < aboutToSkillsScrollThreshold
+				// : `transform: rotate3d(0, 1, 0, ${aboutRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleOut * 0}deg);`}
+				`transform: rotate3d(0, 1, 0, ${aboutRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${aboutSkewAngleIn}deg);`}
 >
 	<About />
 	<!-- <div class="blank"></div> -->
@@ -327,14 +332,18 @@
 <section
 	id="skills"
 	bind:this={skillsSection}
-	style={scrollPosition > skillsToProjectScrollCondition  ?
-		`transform: translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
-		// `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);` 
+	style={viewportWidth < 720
+		? scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
+			? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
+			: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`
+		: scrollPosition > skillsToProjectScrollCondition
+			? `transform: translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);`
+			: // `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(${skillsToProjectTranslateX}px, ${skillsToProjectTranslateY}px, ${translateZ}px) skewY(${skillsSkewAngleOut * 0}deg);`
 
-	// style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
-	// 	? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
-	// 	: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
-		: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn * 0}deg);`}
+				// style={scrollPosition < aboutToSkillsScrollThreshold + transitionPeriod
+				// 	? `transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn}deg);`
+				// 	: `transform: rotate3d(0, 1, 0, ${skillsRotateAngleOut}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleOut}deg);`}
+				`transform: rotate3d(0, 1, 0, ${skillsRotateAngleIn}deg) translate3d(0px, 0px, ${translateZ}px) skewY(${skillsSkewAngleIn * 0}deg);`}
 >
 	<Skills />
 	<div class="lefthand" style="top: {handTop}px">
