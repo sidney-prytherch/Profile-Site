@@ -12,10 +12,10 @@
         "descriptionShort": "This very website!",
         "description": "Animations for this website were done myself taking advantage of what CSS has to offer instead of using external libraries. Scroll animations are done by calculating an angle depending on scroll position - that angle is then used with CSS' transform, using rotate3d(), translate3d(), and skewY() in order to create the 3d rotation animation used between sections.",
         "extraDetails": [
-            "Project data is stored in a json file which is used to create the project section programatically. This makes it easy to update later on, without having to update the svelte files",
-            "Pixel art was done (by me) in an application called Aseprite. This includes my self-portrait, the pocket with the pen, the animated name gif, and the hand",
-            "Paper and Button backgrounds are extendable by size by utilizing CSS' background and border-image along with a single image for each to generate both background border and background",
-            "Folder animation is done using CSS' transform and Matrix3D()"
+            "Project data is stored in a json file which is used to create the project section programatically. This makes it easy to update later on, without having to update the svelte files.",
+            "Pixel art was done (by me) in an application called Aseprite. This includes my self-portrait, the pocket with the pen, the animated name gif, and the hand.",
+            "Paper and Button backgrounds are extendable by size by utilizing CSS' background and border-image along with a single image for each to generate both background border and background.",
+            "Folder animation is done using CSS' transform and Matrix3D()."
         ],
         "imagePath": [],
         "linkToCode": "https://github.com/sidney-prytherch/Profile-Site"
@@ -28,13 +28,15 @@
             "SQLITE"
         ],
         "extraDetails": [
+            "The code to generate verb conjugations was written by me in Kotlin, using Wiktionary as a guide for conjugating the verbs of each verb pattern in Portuguese.",
             "Users can also select verbs from verb endings, conjugation patterns, and irregularities.", 
             "Users can select which verb tenses/moods (i.e. present subjunctive) they want to practice.", 
             "Some verbs differ slightly depending on whether the app is set to European Portuguese or Brazilian Portuguese.",
             "Settings also include subject pronouns (I, you, he/she, etc) and game settings (crossword/wordsearch grid size).",
-            "Quiz mode can be set to timer, or number of questions. On the results screen, users can see what they got right and wrong, and the correct answer."
+            "Quiz mode can be set to timer, or number of questions. On the results screen, users can see what they got right and wrong, and the correct answer.",
+            "Words are stored in a SQLite database. Words being selected/unselected update the database for that word."
         ],
-        "descriptionShort": "Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes. Includes a dictionary and an extremely customizable experience.",
+        "descriptionShort": "Highly-customizable Android app to help English speakers learn Portuguese verb conjugations, through games and quizzes.",
         "description": "This app allows users to Portuguese practice verb conjugations. It includes over 2000 verbs to practice conjugating using generated wordsearches, crosswords, and quizzes, as well as a searchable dictionary in which the user can view conjugations and create a specific group of verbs to practice.",
         "imagePath": [
             "PtAppMainPage",
@@ -54,18 +56,18 @@
             "HTML",
             "WEB"
         ],
-        "descriptionShort": "Single-page web application for selecting a highly-customizable color theme",
-        "description": "This single-page web application helps users create a color theme for a mod for video game. While users can select colors individually, the site includes a lot of options for creating a synergistic color theme, which updates in real-time in the animation. This website is purely HTML, CSS, and JavaScript - no libraries used.",
+        "descriptionShort": "Single-page web app for selecting a color theme for a game mod, with many helpful tools.",
+        "description": "While users can select colors individually, the site includes a lot of options for creating a synergistic color theme, which updates in real-time in the animation. This website is purely HTML, CSS, and JavaScript - no libraries used.",
         "extraDetails": [
-            "Select between 4 different animations, which updates automatically in the canvas. Animation speed, pixel size, and canvas size can all be manipulated with the canvas",
-            "Hover over aech of the ascii codes on the right side to highlight each pixel of that color in the animation canvas",
-            "Lock and unlock colors (padlock icons) which will stop those colors from being changed through the sliders and buttons",
-            "Select between multiple default themes to work from instead of using the default theme",
-            "Sliders allow you to change hue, saturation, and brightness of each group of colors in the animation, as well as all colors",
-            "Buttons allow you to randomize colors, hues, reset colors, and remove outlying colors",
-            "Includes all the same options for second character with own animation and page theme",
-            "Site is generalized to a template allowing it to be easily adapted for use for other games, characters, and animations (a second version of the site for Donkey Kong Country has also been made)",
-            "Wrote a Java program to translate animation frames from game into array of colors, which is used in the site to make the animation"
+            "Select between 4 different animations, which updates automatically in the canvas. Animation speed, pixel size, and canvas size can all be manipulated with the canvas.",
+            "Hover over aech of the ascii codes on the right side to highlight each pixel of that color in the animation canvas.",
+            "Lock and unlock colors (padlock icons) which will stop those colors from being changed through the sliders and buttons.",
+            "Select between multiple default themes to work from instead of using the default theme.",
+            "Sliders allow you to change hue, saturation, and brightness of each group of colors in the animation, as well as all colors.",
+            "Buttons allow you to randomize colors, hues, reset colors, and remove outlying colors.",
+            "Includes all the same options for second character with own animation and page theme.",
+            "Site is generalized to a template allowing it to be easily adapted for use for other games, characters, and animations (a second version of the site for Donkey Kong Country has also been made).",
+            "Wrote a Java program to translate animation frames from game into array of colors, which is used in the site to make the animation."
         ],
         "imagePath": [
             "kirby1",
@@ -85,14 +87,14 @@
             "JAVASCRIPT",
             "TYPESCRIPT"
         ],
-        "descriptionShort": "Website that allows users to create a crochet pattern out of their uploaded image",
-        "description": "Users can upload a photo to this website and change the settings to make a crochet pattern for a \"graphgan\". Colors can be selected manually or automatically, using the K-Means clustering algorithm. Users can customize using a wide range of settings, including the number of stitches, rows, size, color values, number of colors, and number of clusters used for the k-means algorithm.",
+        "descriptionShort": "Website that allows users to create a crochet pattern from an uploaded image.",
+        "description": "Users can update settings to make a crochet pattern for a \"graphgan\". Colors can be selected manually or automatically, using the K-Means clustering algorithm. Users can customize using a wide range of settings, including the number of stitches, rows, size, color values, number of colors, and number of clusters used for the k-means algorithm.",
         "extraDetails": [
-            "Stitch width to height ratio can be modified with the gauge settings, along with the size of the stitches in inches or centimeters",
-            "By clicking the images, the focused version of the image will change. These include estimation of how the project would look, the original image, image with averaged colors per stitch, and image using the clusters form the K-Means algorithm",
-            "Colors can be automatically selected based on K-Means, or they can be selected manually",
-            "You can define the final project by desired height or width in inches or centimeters, or by number of stitches or rows. The other options will be estimated based on gauge and selected parameter",
-            "Background color theme will automatically change depending on image uploaded"
+            "Stitch width to height ratio can be modified with the gauge settings, along with the size of the stitches in inches or centimeters.",
+            "By clicking the images, the focused version of the image will change. These include estimation of how the project would look, the original image, image with averaged colors per stitch, and image using the clusters form the K-Means algorithm.",
+            "Colors can be automatically selected based on K-Means, or they can be selected manually.",
+            "You can define the final project by desired height or width in inches or centimeters, or by number of stitches or rows. The other options will be estimated based on gauge and selected parameter.",
+            "Background color theme will automatically change depending on image uploaded."
         ],
         "imagePath": [
             "crochet1",
@@ -103,7 +105,7 @@
         "linkToCode": "https://github.com/sidney-prytherch/graphgan"
     },
     {
-        "title": "Snake (HTML5 game)",
+        "title": "Snake",
         "tags": [
             "HTML",
             "CSS",
@@ -121,9 +123,9 @@
         ],
         "extraDetails": [
             "Code was written entirely with HTML, CSS, and TypeScript, which was transpiled to JavaScript for the live page - no libraries were used.",
-            "Controls for players are by using WASD and arrow keys",
-            "Snake color can be preset from a number of options, including some common solid colors, a phase between the colors of the rainbow, and phase between 2 fully random colors",
-            "For phasing colors, more shades between the colors are added as the snake gets longer"
+            "Controls for players are by using WASD and arrow keys.",
+            "Snake color can be preset from a number of options, including some common solid colors, a phase between the colors of the rainbow, and phase between 2 fully random colors.",
+            "For phasing colors, more shades between the colors are added as the snake gets longer."
         ],
         "link": "https://sidney-prytherch.github.io/Snake/",
         "linkToCode": "https://github.com/sidney-prytherch/snake"
@@ -137,15 +139,15 @@
             "CSS",
             "JAVASCRIPT"
         ],
-        "descriptionShort": "Single page site for creating YAML settings files for an application called Archipelago",
-        "description": "This website allows users create complex YAML files based on a number of settings. Being heavily based in data, this project takes advantage of Svelte's reactive features with changes to data affecting the page immediately.",
+        "descriptionShort": "Single page website for creating complex YAML settings files for an application called Archipelago.",
+        "description": "Being heavily based in data, this project takes advantage of Svelte's reactive features so that changes to data will affect the page immediately.",
         "imagePath": [
             "yamlEditor1",
             "yamlEditor2"
         ],
         "extraDetails": [
             "YAML files are for settings for a multiworld randomizer. Each game has individual settings and each are selectable in the website.",
-            "At the bottom of the site is a button to download the data as a YAML file, which is ready to be imported into the archipelago files for use",
+            "At the bottom of the site is a button to download the data as a YAML file, which is ready to be imported into the archipelago files for use.",
             "My favorite feature is the background, with which I used my favorite CSS feature - border-background and background."
         ],
         "link": "https://sidney-prytherch.github.io/archipelago-yaml-editor/",
@@ -161,7 +163,7 @@
             "Includes a settings page, in which the number of colors can be changed, as well as the number of guesses allowed",
             "Includes a how-to-play screen and a results screen."
         ],
-        "descriptionShort": "A simple logic puzzle with customizable settings, in the form of an Android application. Based on the board game Mastermind which was made in 1970.",
+        "descriptionShort": "A simple logic puzzle Android app. Based on the 1970 board game Mastermind.",
         "description": "In this logic puzzle game, the user has a number of guesses to determine the which 4 colors are part of the code, and in which order. The user can change how many colors may appear in the 4-color code, and how many guesses they have. The game is based on the board game Mastermind, which was created in 1970 - the internet phenomenon Wordle was based on this same game.",
         "imagePath": [
             "hitOrBlow1",
@@ -177,11 +179,12 @@
             "ANDROIDAPP",
             "KOTLIN"
         ],
-        "descriptionShort": "An Android app for generating and playing the Train Tracks logic puzzle.",
+        "descriptionShort": "An Android app for generating and playing the train tracks puzzle, which is commonly found in puzzle magazines.",
         "description": "In this logic puzzle game, the user has to determine a train's path in an eight-by-eight grid, based solely the start and end of the path along with how many squares of tracks appear in each row and column.",
         "extraDetails": [
-            "Most fun part of making this application was the animation, which is used to transfer from the start screen to the game screen. Train is from an SVG file"
-        ], 
+            "The most fun part of making this application was the animation, which is used to move from the start screen to the game screen",
+            "The train image is an SVG file created with Inkscape"
+        ],
         "imagePath": [
             "trainTracks4",
             "trainTracks1",
@@ -207,6 +210,10 @@
             "spanishCrossword2",
             "spanishCrossword3",
             "spanishCrossword4"
+        ],
+        "extraDetails": [
+            "This site is a work in progress - I plan on adding more tenses, and portuguese words as well. Crosswords would then be able to be between the 3 languages in one crosswords.",
+            "A library was used for Spanish verb conjugations, the data of which is formatted to work with this site and match to the other languages."
         ],
         "link": "https://sidney-prytherch.github.io/vocab-site/",
         "linkToCode": "https://github.com/sidney-prytherch/vocab-site"
