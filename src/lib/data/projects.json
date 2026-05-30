@@ -10,11 +10,11 @@
             "WEB"
         ],
         "descriptionShort": "This very website!",
-        "description": "Animations for this website were done myself taking advantage of what CSS has to offer instead of using external libraries. Scroll animations are done by calculating an angle depending on scroll position - that angle is then used with CSS' transform, using rotate3d(), translate3d(), and skewY() in order to create the 3d rotation animation used between sections.",
+        "description": "Animations for this website were done entirely by myself, taking advantage of what CSS has to offer instead of using external libraries. Scroll animations are done by calculating an angle depending on scroll position - that angle is then used with CSS' transform, using rotate3d(), translate3d(), and skewY() in order to create the 3d rotation animation used between sections.",
         "extraDetails": [
             "Project data is stored in a json file which is used to create the project section programatically. This makes it easy to update later on, without having to update the svelte files.",
-            "Pixel art was done (by me) in an application called Aseprite. This includes my self-portrait, the pocket with the pen, the animated name gif, and the hand.",
-            "Paper and Button backgrounds are extendable by size by utilizing CSS' background and border-image along with a single image for each to generate both background border and background.",
+            "Pixel art was done (by me) in an application called Aseprite. This includes my self-portrait, the details of the shirt, the animated name gif, and other assets.",
+            "Paper and Button backgrounds will automatically extend to fit any screen with the help of CSS' background and border-image along with a single image for each to generate both background border and background.",
             "Folder animation is done using CSS' transform and Matrix3D()."
         ],
         "imagePath": [],

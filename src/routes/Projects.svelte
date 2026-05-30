@@ -114,8 +114,9 @@
 						<span>{tag ? TAG_CODE_TO_NAME_MAP.get(tag) : '-'}</span>
 					{/each}
 				</div>
-				<p><i>{project.descriptionShort}</i></p><br/>
-				<p>full description: {project.description}</p>
+				<p><i>{project.descriptionShort}</i></p>
+				<br/>
+				<p>{project.description}</p>
 				<button
 					class="expandButton"
 					onclick={() => {
